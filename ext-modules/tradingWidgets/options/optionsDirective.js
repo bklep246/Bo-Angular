@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('tradingWidgets').directive('equity',
+angular.module('tradingWidgets').directive('options',
     ['dataService',
     function (dataService) {
         return {
