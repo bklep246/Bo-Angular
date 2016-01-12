@@ -1,3 +1,3 @@
 ﻿'use strict';
 
-angular.module('app', ['gridster', 'ui.bootstrap', 'ngAnimate']);
+angular.module('app', ['ngRoute', 'gridster', 'ui.bootstrap', 'ngAnimate', 'ngStorage', 'accountWidgets', 'tradingWidgets']);

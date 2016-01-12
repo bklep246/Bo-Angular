@@ -6,19 +6,19 @@ angular.module('app').config(['$routeProvider', function ($routeProvider) {
         {
             url: '/accountpages',
             config: {
-                template: '<wwa-dashboard></wwa-dashboard>'
+                template: '<account-dashboard></account-dashboard>'
             }
         },
         {
             url: '/tradingpages',
             config: {
-                template: '<wwa-locations></wwa-locations>'
+                template: '<trading-dashboard></trading-dashboard>'
             }
         },
         {
             url: '/marketdata',
             config: {
-                template: '<wwa-guides></wwa-guides>'
+                template: '<div>market data pages</div>'
             }
         }
     ];

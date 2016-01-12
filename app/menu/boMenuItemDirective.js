@@ -22,6 +22,7 @@ angular.module('app').directive('boMenuItem', function () {
             el.on('click', function (evt) {
                 evt.stopPropagation();
                 evt.preventDefault();
+                //use scope.apply when using jquery to trigger digest cycle
                 scope.$apply(function () {
                     ctrl.setActiveElement(el);
                     ctrl.setRoute(scope.route);
