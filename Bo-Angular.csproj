@@ -66,7 +66,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gulpfile.js" />
+    <Content Include="index.html" />
     <Content Include="packages.config" />
+    <Content Include="bower.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -79,6 +84,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\dashboard\" />
+    <Folder Include="app\framework\" />
+    <Folder Include="app\menu\" />
+    <Folder Include="ext-modules\accountActivity\" />
+    <Folder Include="ext-modules\equityTrading\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
