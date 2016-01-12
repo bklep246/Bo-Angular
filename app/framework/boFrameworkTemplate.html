@@ -1,0 +1,37 @@
+﻿
+<div class="bo-title-bar">
+    <div class="row">
+        <div class="bo-logo-area col-sm-6">
+            <img class="bo-icon" ng-src="{{ iconFile }}" />
+            <div class="bo-title-area">
+                <p class="bo-logo-title">{{ title }}</p>
+                <p class="bo-logo-subtitle">{{ subtitle }}</p>
+            </div>
+
+            <div ng-if="isMenuButtonVisible" ng-click="menuButtonClicked()"
+                 class="bo-collapsed-menu pull-right">
+                <button type="button" class="btn bo-nav-button">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="bo-right-side-controls col-sm-6">
+            <!--<bo-user-profile-small></bo-user-profile-small>-->
+        </div>
+    </div>
+</div>
+
+<div class="bo-menu-area"
+     ng-show="isMenuVisible"
+     ng-class="{'bo-menu-area-vertical': isMenuVertical, 'bo-menu-area-horizontal': !isMenuVertical}">
+    <!--<bo-user-profile></bo-user-profile>-->
+    <ng-transclude></ng-transclude>
+</div>
+
+<div ng-view class="bo-view"
+     ng-class="{'bo-view-full-width': !isMenuVertical || !isMenuVisible}">
+</div>
+
+

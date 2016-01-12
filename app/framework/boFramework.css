@@ -1,0 +1,134 @@
+﻿
+.bo-title-bar {
+    background-color: #101010;
+    padding: 0 20px;
+    border-bottom: 2px solid orange;
+}
+
+.bo-logo-area {
+    /*text-align: center;*/
+}
+
+.bo-title-area {
+    display: inline-block;
+}
+
+.bo-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 8px;
+    vertical-align: top;
+    /*border: 1px solid #999;*/
+}
+
+.bo-logo-title {
+    color: whitesmoke;
+    margin-top: 6px;
+    font-size: 22px;
+}
+
+.bo-logo-subtitle {
+    font-size: 13px;
+    margin-top: -13px;
+    color: #cacaca;
+}
+
+@media screen and (max-width: 430px) {
+    .bo-icon {
+        display: none;
+    }
+    .bo-logo-title {
+        font-size: 18px;
+    }
+}
+
+.bo-right-side-controls {
+    line-height: 60px;
+}
+
+.bo-right-side-controls > div {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .bo-right-side-controls > div {
+        text-align: right;       
+    }
+    .bo-logo-area {
+        text-align: left;
+    }
+}
+
+.bo-collapsed-menu {
+    display: inline-block;
+    height: 100%;
+}
+
+.bo-nav-button {
+    height: 40px;
+    width: 60px;
+    margin-top: 10px;
+    border: 1px solid #888;
+    padding: 0;
+    font-size: 26px;
+    color: #777;
+}
+
+.bo-view {
+    margin-left: 200px;
+    padding: 20px;
+    background-color: #ccc;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+.bo-view-full-width {
+    margin-left: 0;
+}
+
+
+.bo-user-profile {
+    background-color: #333;
+    color: white;
+    width: 200px;
+    min-height: 120px;
+    padding-top: 10px;
+}
+
+.bo-user-profile > div {
+    display: inline-block;
+    padding-top: 10px;
+    margin-left: 5px;
+}
+
+.bo-user-profile > div > p {
+    margin-bottom: 2px;
+}
+
+.bo-user-profile > div > button {
+    margin-top: 8px;
+}
+
+.bo-user-profile img {
+    float: left;
+    margin: 12px;
+    width: 80px;
+    height: 80px;
+}
+
+.bo-user-profile-small {
+    color: #333;
+    padding-top: 4px;
+}
+
+.bo-user-profile-small > span {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.bo-user-profile-small img {
+    width: 40px;
+    height: 40px;
+}

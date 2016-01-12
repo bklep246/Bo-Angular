@@ -66,12 +66,33 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="app\app.css" />
+    <Content Include="app\appConfig.js" />
+    <Content Include="app\appModule.js" />
+    <Content Include="app\appRouteConfig.js" />
+    <Content Include="app\dashboard\boDashboardDirective.js" />
+    <Content Include="app\dashboard\boDashboardTemplate.html" />
+    <Content Include="app\dashboard\boWidgetBodyDirective.js" />
+    <Content Include="app\dashboard\boWidgetBodyTemplate.html" />
+    <Content Include="app\framework\boFrameworkController.js" />
+    <Content Include="app\framework\boFrameworkDirective.js" />
+    <Content Include="app\framework\boFrameworkTemplate.html" />
+    <Content Include="app\menu\boMenuController.js" />
+    <Content Include="app\menu\boMenuDirective.js" />
+    <Content Include="app\menu\boMenuItemDirective.js" />
+    <Content Include="app\menu\boMenuItemTemplate.html" />
+    <Content Include="app\menu\boMenuTemplate.html" />
     <Content Include="gulpfile.js" />
+    <Content Include="images\thomsonLogo.jpg" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="app\framework\boFramework.css" />
+    <Content Include="app\menu\boMenu.css" />
+    <Content Include="app\dashboard\boDashboard.css" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -86,9 +107,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\dashboard\" />
-    <Folder Include="app\framework\" />
-    <Folder Include="app\menu\" />
     <Folder Include="ext-modules\accountActivity\" />
     <Folder Include="ext-modules\equityTrading\" />
   </ItemGroup>

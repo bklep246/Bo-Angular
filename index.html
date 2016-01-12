@@ -8,6 +8,10 @@
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="bower_components/angular-gridster/dist/angular-gridster.min.css" rel="stylesheet" />
 
+    <link href="app/app.css" rel="stylesheet" />
+    <link href="app/framework/boFramework.css" rel="stylesheet" />
+    <link href="app/menu/boMenu.css" rel="stylesheet" />
+
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
@@ -17,22 +21,31 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/ngstorage/ngStorage.min.js"></script>
 
-</head>
-<body class="container-fluid" ng-controller="appController">
-    <ps-framework title="Bo-Angular"
-                  subtitle="POC Project"
-                  icon-file="Images/thomsonLogo.jpg">
+    <script src="app/appModule.js"></script>
+    <script src="app/appConfig.js"></script>
+    
+    <script src="app/menu/boMenuDirective.js"></script>
+    <script src="app/menu/boMenuController.js"></script>
+    <script src="app/menu/boMenuItemDirective.js"></script>
+  
+    <script src="app/dashboard/boDashboardDirective.js"></script>
+    <script src="app/dashboard/boWidgetBodyDirective.js"></script>
 
-        <!--<ps-menu>
-            <ps-menu-item label="Dashboard" icon="fa-dashboard" route="dashboard"></ps-menu-item>
-            <ps-menu-item label="Location" icon="fa-location-arrow" route="locations"></ps-menu-item>
-            <ps-menu-item label="Raft Guides" icon="fa-user" route="guides"></ps-menu-item>
-            <ps-menu-group label="Equipment" icon="fa-gears">
-                <ps-menu-item label="Rafts" icon="fa-unlink" route="rafts"></ps-menu-item>
-                <ps-menu-item label="Paddles" icon="fa-magic" route="paddles"></ps-menu-item>
-                <ps-menu-item label="Life Vests" icon="fa-life-ring" route="vests"></ps-menu-item>
-            </ps-menu-group>
-        </ps-menu>-->
-    </ps-framework>
+    <script src="app/framework/boFrameworkDirective.js"></script>
+    <script src="app/framework/boFrameworkController.js"></script>
+    
+
+</head>
+<body class="container-fluid">
+    <bo-framework title="Bo-Angular"
+                  subtitle="POC Project"
+                  icon-file="images/thomsonLogo.jpg">
+        <bo-menu>
+            <bo-menu-item label="Account Pages" icon="fa-dashboard" route="accountpages"></bo-menu-item>
+            <bo-menu-item label="Trading Pages" icon="fa-magic" route="tradingpages"></bo-menu-item>
+            <bo-menu-item label="Market Data" icon="fa-location-arrow" route="marketdata"></bo-menu-item>
+        </bo-menu>
+       
+    </bo-framework>
 </body>
 </html>
