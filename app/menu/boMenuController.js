@@ -3,53 +3,34 @@
 angular.module('app').controller('boMenuController',
     ['$scope', '$rootScope',
         function ($scope, $rootScope) {
-
-            //$scope.isVertical = true;
-            $scope.openMenuScope = null;
-            $scope.showMenu = true;
-            //$scope.allowHorizontalToggle = true;
-
-            this.getActiveElement = function () {
-                return $scope.activeElement;
+            var vm = this;
+            vm.openMenuScope = null;
+            vm.showMenu = true;
+            
+            vm.getActiveElement = function () {
+                return vm.activeElement;
             };
 
-            this.setActiveElement = function (el) {
-                $scope.activeElement = el;
+            vm.setActiveElement = function (el) {
+                vm.activeElement = el;
             };
 
-            //this.isVertical = function () {
-            //    return $scope.isVertical;
-            //};
-
-            this.setRoute = function (route) {
+            vm.setRoute = function (route) {
                 $rootScope.$broadcast('bo-menu-item-selected-event',
                     { route: route });
             };
 
-            this.setOpenMenuScope = function (scope) {
-                $scope.openMenuScope = scope;
+            vm.setOpenMenuScope = function (scope) {
+                vm.openMenuScope = scope;
             };
 
-            //$scope.toggleMenuOrientation = function () {
-
-            //    // close any open menu
-            //    if ($scope.openMenuScope) {
-            //        $scope.openMenuScope.closeMenu();
-            //    }
-
-            //    $scope.isVertical = !$scope.isVertical;
-
-            //    $rootScope.$broadcast('bo-menu-orientation-changed-event',
-            //        { isMenuVertical: $scope.isVertical });
-            //};
-
             angular.element(document).bind('click', function (e) {
-                if ($scope.openMenuScope && !$scope.isVertical) {
+                if (vm.openMenuScope && !vm.isVertical) {
                     if ($(e.target).parent().hasClass('bo-selectable-item')) {
                         return;
                     }
                     $scope.$apply(function () {
-                        $scope.openMenuScope.closeMenu();
+                        vm.openMenuScope.closeMenu();
                     });
                     e.preventDefault();
                     e.stopPropagation();
@@ -57,9 +38,7 @@ angular.module('app').controller('boMenuController',
             });
 
             $scope.$on('bo-menu-show', function (evt, data) {
-                $scope.showMenu = data.show;
-                //$scope.isVertical = data.isVertical;
-                //$scope.allowHorizontalToggle = data.allowHorizontalToggle;
+                vm.showMenu = data.show;
             });
         }
     ]);

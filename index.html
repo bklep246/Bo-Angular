@@ -4,48 +4,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Bo-Angular</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="bower_components/angular-gridster/dist/angular-gridster.min.css" rel="stylesheet" />
 
-    <link href="app/app.css" rel="stylesheet" />
-    <link href="app/framework/boFramework.css" rel="stylesheet" />
-    <link href="app/menu/boMenu.css" rel="stylesheet" />
-    <link href="app/dashboard/boDashboard.css" rel="stylesheet" />
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href=".tmp/app.css" rel="stylesheet" />
 
     <!-- Widget Styles -->
-    <link href="ext-modules/accountWidgets/activity/activity.css" rel="stylesheet" />
+    <link href=".tmp/accountWidgets.css" rel="stylesheet" />
+    <link href=".tmp/tradingWidgets.css" rel="stylesheet" />
+    <!--<link href="ext-modules/accountWidgets/activity/activity.css" rel="stylesheet" />
     <link href="ext-modules/accountWidgets/orderstatus/orderStatus.css" rel="stylesheet" />
     <link href="ext-modules/tradingWidgets/equity/equity.css" rel="stylesheet" />
     <link href="ext-modules/tradingWidgets/mutualFund/mutualFund.css" rel="stylesheet" />
-    <link href="ext-modules/tradingWidgets/options/options.css" rel="stylesheet" />
+    <link href="ext-modules/tradingWidgets/options/options.css" rel="stylesheet" />-->
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script src="bower_components/angular-gridster/dist/angular-gridster.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
+    <script src="bower_components/angular-gridster/src/angular-gridster.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
-    <script src="app/appModule.js"></script>
-    <script src="app/appConfig.js"></script>
-    <script src="app/appRouteConfig.js"></script>
-    <script src="app/services/dataService.js"></script>
-
-    <script src="app/menu/boMenuDirective.js"></script>
-    <script src="app/menu/boMenuController.js"></script>
-    <script src="app/menu/boMenuItemDirective.js"></script>
-
-    <script src="app/dashboard/boDashboardDirective.js"></script>
-    <script src="app/dashboard/boWidgetBodyDirective.js"></script>
-
-    <script src="app/framework/boFrameworkDirective.js"></script>
-    <script src="app/framework/boFrameworkController.js"></script>
-
-    <script src="app/directives/accountDashboardDirective.js"></script>
-    <script src="app/directives/tradingDashboardDirective.js"></script>
+    <!-- inject:js -->
+    <script src="/app/appModule.js"></script>
+    <script src="/app/appConfig.js"></script>
+    <script src="/app/appRouteConfig.js"></script>
+    <script src="/app/directives/accountDashboardDirective.js"></script>
+    <script src="/app/directives/marketDashboardDirective.js"></script>
+    <script src="/app/directives/tradingDashboardDirective.js"></script>
+    <script src="/app/framework/boFrameworkController.js"></script>
+    <script src="/app/framework/boFrameworkDirective.js"></script>
+    <script src="/app/dashboard/boDashboardDirective.js"></script>
+    <script src="/app/dashboard/boWidgetBodyDirective.js"></script>
+    <script src="/app/menu/boMenuController.js"></script>
+    <script src="/app/menu/boMenuDirective.js"></script>
+    <script src="/app/menu/boMenuItemDirective.js"></script>
+    <script src="/app/services/dataService.js"></script>
+    <!-- endinject -->
 
     <!-- External modules -->
     <script src="ext-modules/accountWidgets/accountWidgetsModule.js"></script>

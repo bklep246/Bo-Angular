@@ -23,15 +23,12 @@
     </div>
 </div>
 
-<div class="bo-menu-area"
-     ng-show="isMenuVisible"
-     ng-class="{'bo-menu-area-vertical': isMenuVertical, 'bo-menu-area-horizontal': !isMenuVertical}">
+<div class="bo-menu-area bo-menu-area-vertical">
     <!--<bo-user-profile></bo-user-profile>-->
     <ng-transclude></ng-transclude>
 </div>
 
-<div ng-view class="bo-view"
-     ng-class="{'bo-view-full-width': !isMenuVertical || !isMenuVisible}">
+<div ng-view class="bo-view">
 </div>
 
 

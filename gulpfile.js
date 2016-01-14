@@ -1,11 +1,13 @@
 ﻿'use strict';
 
 var gulp = require('gulp');
-var strip = require('gulp-strip-line');
+var args = require('yargs').argv;
+var del = require('del');
 var browserSync = require('browser-sync').create();
-var $ = require('gulp-load-plugins')();
 var reload = browserSync.reload;
 
+var $ = require('gulp-load-plugins')({ lazy: true });
+var config = require('./gulp.config')();
 
 function browserSyncInit(baseDir, browser) {
     browser = browser === undefined ? 'default' : browser;
@@ -38,281 +40,96 @@ function browserSyncInit(baseDir, browser) {
     });
 }
 
-gulp.task('menuPartials', function () {
-    return gulp.src(['./ext-modules/psMenu/**/*.html'])
-        .pipe($.angularTemplatecache('templateCacheHtmlMenu.js', {
-            module: 'psMenu',
-            root: 'ext-modules/psMenu/'
-        }))
-        .pipe(gulp.dest('.tmp/partials/'));
+gulp.task('clean-styles', function () {
+    var files = config.temp + '**/*.css';
+    //return del(files);
+    clean(files);
+    //log('done cleaning');
 });
 
-gulp.task('dashboardPartials', function () {
-    return gulp.src(['./ext-modules/psDashboard/**/*.html'])
-        .pipe($.angularTemplatecache('templateCacheHtmlDashboard.js', {
-            module: 'psDashboard',
-            root: 'ext-modules/psDashboard/'
-        }))
-        .pipe(gulp.dest('.tmp/partials/'));
+gulp.task('lint', function () {
+    log('analyzing source with eslint');
+    return gulp.src(config.alljs)
+        .pipe($.if(args.verbose, $.print()))
+        // eslint() attaches the lint output to the "eslint" property 
+        // of the file object so it can be used by other modules. 
+        .pipe($.eslint())
+        // eslint.format() outputs the lint results to the console. 
+        // Alternatively use eslint.formatEach() (see Docs). 
+        .pipe($.eslint.format())
+        // To have the process exit with an error code (1) on 
+        // lint error, return the stream and pipe to failAfterError last. 
+        .pipe($.eslint.failAfterError());
 });
 
-gulp.task('frameworkPartials', function () {
-    return gulp.src(['./ext-modules/psFramework/**/*.html'])
-        .pipe($.angularTemplatecache('templateCacheHtmlFramework.js', {
-            module: 'psFramework',
-            root: 'ext-modules/psFramework/'
-        }))
-        .pipe(gulp.dest('.tmp/partials/'));
+gulp.task('serve', ['lint', 'styles'], function () {
+    browserSyncInit(['./']);
+
+    gulp.watch([config.appSass], ['app-styles']);
+    gulp.watch([config.extAccountWidgetsSass], ['account-styles']);
+    gulp.watch([config.extTradingWidgetsSass], ['trading-styles']);
 });
 
-gulp.task('partials', ['menuPartials', 'dashboardPartials', 'frameworkPartials'], function () {
-    return gulp.src([
-      'app/**/*.html',
-      '.tmp/serve/app/**/*.html'
-    ])
-      .pipe($.htmlmin({ collapseWhitespace: true }))
-      .pipe($.angularTemplatecache('templateCacheHtml.js', {
-          module: 'app',
-          root: 'app'
-      }))
-      .pipe(gulp.dest('.tmp/partials/'));
+gulp.task('styles', ['clean-styles', 'app-styles', 'ext-styles'], function () { });
+
+gulp.task('app-styles', function () {
+    log('compiling app SASS --> CSS');
+
+    return gulp.src(config.appMainSass)
+        .pipe($.plumber())
+        .pipe($.sass())
+        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        .pipe(gulp.dest(config.temp))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('html', ['inject', 'partials'], function () {
-    var partialsInjectFile = gulp.src('.tmp/partials/*.js', { read: false });
-    var partialsInjectOptions = {
-        starttag: '<!-- inject:partials -->',
-        ignorePath: '.tmp/partials',
-        addRootSlash: false
-    };
+gulp.task('ext-styles', ['account-styles', 'trading-styles'], function () {});
 
-    //var htmlFilter = $.filter('*.html', { restore: true });
-    //var jsFilter = $.filter('**/*.js', { restore: true });
-    //var cssFilter = $.filter('**/*.css', { restore: true });
-    //var assets;
-
-    return gulp.src('.tmp/serve/*.html')
-        .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-        .pipe($.useref())
-        .pipe($.if('*.js', $.uglify()))
-        //.pipe($.if('*.css', $.cssnano()))
-        //.pipe($.if('*.html', $.htmlmin()))
-        //.pipe($.rev())
-        //.pipe(jsFilter)
-        //.pipe($.sourcemaps.init())
-        //.pipe($.ngAnnotate())
-        //.pipe($.uglify({ preserveComments: $.uglifySaveLicense }))
-        //.pipe($.sourcemaps.write('maps'))
-        //.pipe(jsFilter.restore)
-        //.pipe(cssFilter)
-        //.pipe($.sourcemaps.init())
-        //.pipe($.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
-        //.pipe($.cssnano())
-        //.pipe($.sourcemaps.write('maps'))
-        //.pipe(cssFilter.restore)
-        //.pipe(assets.restore())
-        //.pipe($.useref())
-        //.pipe($.revReplace())
-        //.pipe(htmlFilter)
-        //.pipe($.htmlmin())
-        //.pipe(htmlFilter.restore)
-        .pipe(gulp.dest('dist/'))
-        .pipe($.size({ title: 'dist/', showFiles: true }));
+gulp.task('trading-styles', function () {
+    return gulp.src(config.extTradingWidgetsMainSass)
+        //Plumber keeps stream alive and shows error messages
+        .pipe($.plumber())
+        .pipe($.sass())
+        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        .pipe(gulp.dest(config.temp))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
-//return gulp.src([
-//    './app/**/*.html',
-//    './ext-modules/psMenu/**/*.html',
-//    './ext-modules/psDashboard/**/*.html',
-//    './ext-modules/psFramework/**/*.html'
-//])
-//    .pipe($.angularTemplatecache('templateCacheHtml.js', {
-//        module: 'app',
-//        root: 'app'
-//    }))
-//    .pipe(gulp.dest('./app/'));
-//});
-
-gulp.task('images', function() {
-    return gulp.src('./Images/**/*')
-      .pipe($.if($.if.isFile, $.cache($.imagemin({
-          progressive: true,
-          interlaced: true,
-          // don't remove IDs from SVGs, they are often used
-          // as hooks for embedding and styling
-          svgoPlugins: [{ cleanupIDs: false }]
-      }))
-      .on('error', function (err) {
-          console.log(err);
-          this.end();
-      })))
-      .pipe(gulp.dest('dist/images'));
+gulp.task('account-styles', function () {
+    return gulp.src(config.extAccountWidgetsMainSass)
+        //Plumber keeps stream alive and shows error messages
+        .pipe($.plumber())
+        .pipe($.sass())
+        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        .pipe(gulp.dest(config.temp))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('styles', function () {
-    var sassOptions = {
-        style: 'expanded'
-    };
+gulp.task('wiredep', function () {
+    var options = config.getWiredepDefaultOptions();
+    var wiredep = require('wiredep').stream;
 
-    var injectFiles = gulp.src([
-      'app/*.scss',
-      'ext-modules/*.scss'
-    ], { read: false });
-
-    var injectOptions = {
-        //transform: function (filePath) {
-        //    filePath = filePath.replace(conf.paths.src + '/app/', '');
-        //    return '@import "' + filePath + '";';
-        //},
-        //starttag: '// injector',
-        //endtag: '// endinjector',
-        addRootSlash: false
-    };
-
-    return gulp.src([
-      'app/app.scss',
-      'ext-modules/ext-modules.scss'
-    ])
-      .pipe($.inject(injectFiles, injectOptions))
-      //.pipe(wiredep(_.extend({}, conf.wiredep)))
-      .pipe($.sourcemaps.init())
-      .pipe($.sass(sassOptions))
-      //.pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/serve/app/'))
-      .pipe(browserSync.reload({ stream: true }));
+    return gulp.src(config.index)
+    .pipe(wiredep(options))
+    .pipe($.inject(gulp.src(config.js)))
+    .pipe(gulp.dest(config.client));
 });
 
-gulp.task('jsHint', function () {
-    return gulp.src('app/**/*.js')
-      .pipe($.jshint())
-      .pipe($.jshint.reporter('jshint-stylish'))
-      .pipe(reload({ stream: true }))
-      .pipe($.size());
-});
+////////////////////////////////////////////
 
-gulp.task('jsHint-Ext', function () {
-    return gulp.src('ext-modules/**/*.js')
-      .pipe($.jshint())
-      .pipe($.jshint.reporter('jshint-stylish'))
-      .pipe(reload({ stream: true }))
-      .pipe($.size());
-});
+function clean(path) {
+    log('Cleaning: ' + $.util.colors.blue(path));
+    return del(path);
+}
 
-gulp.task('inject', ['styles', 'jsHint', 'jsHint-Ext'], function () {
-    var injectStyles = gulp.src([
-        '.tmp/serve/app/**/*.css',
-        '!.tmp/serve/app/vendor.css'
-    ], { read: false });
-
-    var injectScripts = gulp.src([
-      'app/**/*.module.js',
-      'ext-modules/**/*.module.js',
-      'app/**/*.js',
-      'ext-modules/**/*.js',
-      '!app/**/*.spec.js',
-      '!app/**/*.mock.js',
-      '!ext-modules/**/*.spec.js',
-      '!ext-modules/**/*.mock.js',
-    ])
-    .pipe($.angularFilesort());
-
-    var injectOptions = {
-        ignorePath: ['.tmp/serve'],
-        addRootSlash: false
-    };
-
-    return gulp.src('*index.html')
-      .pipe($.inject(injectStyles, injectOptions))
-      .pipe($.inject(injectScripts, injectOptions))
-      //.pipe(wiredep(_.extend({}, conf.wiredep)))
-      .pipe(gulp.dest('.tmp/serve'));
-});
-
-gulp.task('dashboard-watch', ['buildDashboardTemplateCache', 'ext-scripts'], reload);
-gulp.task('framework-watch', ['buildFrameworkTemplateCache', 'ext-scripts'], reload);
-gulp.task('menu-watch', ['buildMenuTemplateCache', 'ext-scripts'], reload);
-gulp.task('app-watch', ['buildTemplateCache', 'scripts'], reload);
-gulp.task('build', ['html'], function () { });
-
-gulp.task('clean', function () {
-    return $.del(['.tmp/', 'dist/']);
-});
-
-gulp.task('serve', ['inject'], function () {
-    //browserSync.init({
-    //    server: {
-    //        notify: false,
-    //        port: 9000,
-    //        baseDir: ['.tmp', './']
-    //    }
-    //});
-
-    gulp.watch([
-    '*.html',
-    'Images/**/*'
-    ]).on('change', reload);
-
-    //watch app css file changes
-    gulp.watch('app/**/*.scss', ['styles']);
-
-    //watch css file changes for ext-modules
-    gulp.watch('ext-modules/**/*.scss', ['ext-styles']);
-
-    //watch app js file changes
-    gulp.watch('app/**/*.js', ['scripts', 'jsHint']);
-
-    //watch ext-modules js file changes
-    gulp.watch('ext-modules/**/*.js', ['ext-scripts', 'jsHint-Ext']);
-
-    //watch app html changes
-    gulp.watch('app/**/*.html', ['app-watch']);
-
-    //watch dashboard html changes
-    gulp.watch('ext-modules/psDashboard/**/*.html', ['dashboard-watch']);
-
-    //watch framework html changes
-    gulp.watch('ext-modules/psFramework/**/*.html', ['framework-watch']);
-
-    //watch menu html changes
-    gulp.watch('ext-modules/psMenu/**/*.html', ['menu-watch']);
-
-    browserSyncInit(['.tmp/serve', './']);
-});
-
-gulp.task('serve:dist', ['build'], function () {
-    browserSync.init({
-        server: {
-            notify: false,
-            port: 9000,
-            server: {
-                baseDir: ['dist']
+function log(msg) {
+    if (typeof (msg) === 'object') {
+        for (var item in msg) {
+            if (msg.hasOwnProperty(item)) {
+                $.util.log($.util.colors.blue(msg[item]));
             }
         }
-    });
-});
-
-gulp.task('default', ['clean'], function () {
-    gulp.start('build');
-});
-
-//function startTests(singleRun, done) {
-//    var karma = require('karma').server;
-//    var excludeFiles = [];
-//    var serverSpecs = config.serverIntegrationSpecs;
-//    excludeFiles = serverSpecs;
-
-//    karma.start({
-//        config: __dirname + '/karma.conf.js',
-//        exlude: excludeFiles,
-//            single: !!singleRun
-//    }, karmaCompleted);
-
-//    function karmaCompleted(karmaResult) {
-//        log('Karma C')
-//}
-//}
-
-//gulp.task('test', function(done){
-//    startTests(true /* singleRun */, done);
-//});
+    } else {
+        $.util.log($.util.colors.blue(msg));
+    }
+}

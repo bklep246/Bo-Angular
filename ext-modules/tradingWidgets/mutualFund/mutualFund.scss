@@ -1,11 +1,11 @@
-﻿.options-widget {
+﻿.mf-widget {
     height: 100%;
     width: 100%;
     font-size: 16px;
 }
 
-.options-heading {
-    background-color: #F7B948;
+.mf-heading {
+    background-color: #FFDC9B;
     color: black;
     height: 32px;
     padding: 2px 0 0 10px;
@@ -13,44 +13,44 @@
     line-height: 32px;
 }
 
-.options-body {
+.mf-body {
     display: table;
     background-color: lemonchiffon;
-    color: darkblue;
+    color: white;
     width: 100%;
     height: 100%;
 }
 
-.options-row {
+.mf-row {
     display: table-row;
 }
 
-.options-icon {
+.mf-icon {
     height: 24px;
     width: 24px;
     margin-top: -3px;
     margin-left: 3px;
 }
 
-.options-name-area {
+.mf-name-area {
     display: table-cell;
     width: 180px;
     vertical-align: top;
-    background-color: black;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
     padding: 10px;
 }
 
-.options-name-area h4 {
+.mf-name-area h4 {
     margin-bottom: 4px;
     font-size: 10px;
 }
 
-.options-name-area p {
+.mf-name-area p {
     font-size: 20px;
 }
 
-.options-picture-area {
+.mf-picture-area {
     display: table-cell;
     background-size: cover;
     background-position: center;

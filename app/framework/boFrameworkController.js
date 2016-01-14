@@ -2,12 +2,13 @@
 
 angular.module('app').controller('boFrameworkController', ['$scope', '$rootScope', '$window', '$timeout', '$location',
     function ($scope, $rootScope, $window, $timeout, $location) {
-        $scope.isMenuVisible = true;
-        $scope.isMenuButtonVisible = true;
-        $scope.isMenuVertical = true;
+        var vm = this;
+        vm.isMenuVisible = true;
+        vm.isMenuButtonVisible = true;
+        vm.isMenuVertical = true;
         
         $scope.$on('bo-menu-item-selected-event', function (evt, data) {
-            $scope.routeString = data.route;
+            vm.routeString = data.route;
             $location.path(data.route);
             checkWidth();
             //broadcastMenuState();
@@ -36,8 +37,8 @@ angular.module('app').controller('boFrameworkController', ['$scope', '$rootScope
         var checkWidth = function () {
             //Math.max gets full width of viewport to take scrollbar into account
             var width = Math.max($($window).width(), $window.innerWidth);
-            $scope.isMenuVisible = (width >= 768);
-            $scope.isMenuButtonVisible = !$scope.isMenuVisible;
+            vm.isMenuVisible = (width >= 768);
+            //vm.isMenuButtonVisible = !vm.isMenuVisible;
         };
 
         //$scope.menuButtonClicked = function () {

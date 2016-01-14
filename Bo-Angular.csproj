@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="app\app.css" />
+    <None Include="app\app.scss" />
     <Content Include="app\appConfig.js" />
     <Content Include="app\appModule.js" />
     <Content Include="app\appRouteConfig.js" />
@@ -76,6 +76,7 @@
     <Content Include="app\dashboard\boWidgetBodyDirective.js" />
     <Content Include="app\dashboard\boWidgetBodyTemplate.html" />
     <Content Include="app\directives\accountDashboardDirective.js" />
+    <Content Include="app\directives\marketDashboardDirective.js" />
     <Content Include="app\directives\tradingDashboardDirective.js" />
     <Content Include="app\framework\boFrameworkController.js" />
     <Content Include="app\framework\boFrameworkDirective.js" />
@@ -87,32 +88,38 @@
     <Content Include="app\menu\boMenuTemplate.html" />
     <Content Include="app\services\dataService.js" />
     <Content Include="ext-modules\accountWidgets\accountWidgetsModule.js" />
-    <Content Include="ext-modules\accountWidgets\activity\activity.css" />
+    <None Include="ext-modules\accountWidgets\activity\activity.scss" />
     <Content Include="ext-modules\accountWidgets\activity\activityDirective.js" />
     <Content Include="ext-modules\accountWidgets\activity\activityTemplate.html" />
-    <Content Include="ext-modules\accountWidgets\orderStatus\orderStatus.css" />
+    <None Include="ext-modules\accountWidgets\orderStatus\orderStatus.scss" />
     <Content Include="ext-modules\accountWidgets\orderStatus\orderStatusDirective.js" />
     <Content Include="ext-modules\accountWidgets\orderStatus\orderStatusTemplate.html" />
     <Content Include="ext-modules\tradingWidgets\tradingWidgetsModule.js" />
-    <Content Include="ext-modules\tradingWidgets\equity\equity.css" />
+    <None Include="ext-modules\tradingWidgets\equity\equity.scss" />
     <Content Include="ext-modules\tradingWidgets\equity\equityDirective.js" />
     <Content Include="ext-modules\tradingWidgets\equity\equityTemplate.html" />
-    <Content Include="ext-modules\tradingWidgets\mutualFund\mutualFund.css" />
+    <None Include="ext-modules\tradingWidgets\mutualFund\mutualFund.scss" />
     <Content Include="ext-modules\tradingWidgets\mutualFund\mutualFundDirective.js" />
     <Content Include="ext-modules\tradingWidgets\mutualFund\mutualFundTemplate.html" />
-    <Content Include="ext-modules\tradingWidgets\options\options.css" />
+    <None Include="ext-modules\tradingWidgets\options\options.scss" />
     <Content Include="ext-modules\tradingWidgets\options\optionsDirective.js" />
     <Content Include="ext-modules\tradingWidgets\options\optionsTemplate.html" />
+    <Content Include="gulp.config.js" />
     <Content Include="gulpfile.js" />
     <Content Include="images\thomsonLogo.jpg" />
     <Content Include="index.html" />
+    <Content Include="index_old.html" />
     <Content Include="packages.config" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="app\framework\boFramework.css" />
-    <Content Include="app\menu\boMenu.css" />
-    <Content Include="app\dashboard\boDashboard.css" />
+    <None Include="app\framework\boFramework.scss" />
+    <None Include="app\menu\boMenu.scss" />
+    <None Include="app\dashboard\boDashboard.scss" />
+    <Content Include=".eslintignore" />
+    <Content Include=".eslintrc" />
+    <Content Include="ext-modules\accountWidgets\accountWidgets.scss" />
+    <Content Include="ext-modules\tradingWidgets\tradingWidgets.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -126,7 +133,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ext-modules\marketWidgets\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
