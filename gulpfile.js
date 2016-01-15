@@ -10,6 +10,10 @@ var $ = require('gulp-load-plugins')({ lazy: true });
 var config = require('./gulp.config')();
 
 function browserSyncInit(baseDir, browser) {
+    if (browserSync.active) {
+        return;
+    }
+
     browser = browser === undefined ? 'default' : browser;
 
     var routes = null;
@@ -40,12 +44,74 @@ function browserSyncInit(baseDir, browser) {
     });
 }
 
-gulp.task('clean-styles', function () {
-    var files = config.temp + '**/*.css';
-    //return del(files);
-    clean(files);
-    //log('done cleaning');
+/////////////////// TEMPLATE CACHE /////////////////////////
+gulp.task('appTemplateCache', function () {
+    log('Creating AngularJS $templatecache');
+    var appConfig = config.templateCache;
+    loadTemplateCache(config.htmltemplates, appConfig.file, appConfig.options, config.temp);
 });
+
+gulp.task('accountTemplateCache', function () {
+    log('Creating AngularJS $templatecache for ext-modules account widgets');
+    var accountConfig = config.accountWidgetstemplateCache;
+    loadTemplateCache(config.accountWidgetsHtmlTemplates, accountConfig.file, accountConfig.options, config.temp);
+});
+
+gulp.task('marketTemplateCache', function () {
+    log('Creating AngularJS $templatecache for ext-modules market widgets');
+    var marketConfig = config.marketWidgetstemplateCache;
+    loadTemplateCache(config.marketWidgetsHtmlTemplates, marketConfig.file, marketConfig.options, config.temp);
+});
+
+gulp.task('tradingTemplateCache', function () {
+    log('Creating AngularJS $templatecache for ext-modules trading widgets');
+    var tradingConfig = config.tradingWidgetstemplateCache;
+    loadTemplateCache(config.tradingWidgetsHtmlTemplates, tradingConfig.file, tradingConfig.options, config.temp);
+});
+
+gulp.task('templatecache', ['appTemplateCache', 'accountTemplateCache', 'marketTemplateCache', 'tradingTemplateCache']);
+///////////////////// END TEMPLATE CACHE  /////////////////////////////////
+
+/////////////////////// STYLES - CSS/SASS ///////////////////////////////////////////
+gulp.task('styles', ['clean-styles', 'app-styles', 'ext-styles'], function () { });
+gulp.task('app-styles', function () {
+    sass(config.appMainSass, config.temp);
+});
+
+gulp.task('ext-styles', ['account-styles', 'trading-styles'], function () { });
+gulp.task('trading-styles', function () {
+    sass(config.extTradingWidgetsMainSass, config.temp);
+});
+
+gulp.task('account-styles', function () {
+    sass(config.extAccountWidgetsMainSass, config.temp);
+});
+//////////////////// END STYLES //////////////////////////////////////////
+
+//////////////////// CLEAN TASKS /////////////////////////////////////////
+gulp.task('clean-styles', function () {
+    clean(config.build + 'fonts/**/*.*');
+});
+
+gulp.task('clean-fonts', function () {
+    clean(config.temp + '**/*.css');
+});
+
+gulp.task('clean-images', function () {
+    clean(config.build + 'images/**/*.*');
+});
+
+gulp.task('clean-code', function () {
+    var files = [].concat(
+        config.temp + '**/*.js',
+        config.build + '**/*.html',
+        config.build + 'js/**/*.js'
+    );
+    clean(files);
+});
+
+gulp.task('clean', ['clean-styles', 'clean-fonts', 'clean-images', 'clean-code']);
+//////////////////////// END CLEAN TASKS /////////////////////////////////
 
 gulp.task('lint', function () {
     log('analyzing source with eslint');
@@ -62,50 +128,21 @@ gulp.task('lint', function () {
         .pipe($.eslint.failAfterError());
 });
 
-gulp.task('serve', ['lint', 'styles'], function () {
-    browserSyncInit(['./']);
-
-    gulp.watch([config.appSass], ['app-styles']);
-    gulp.watch([config.extAccountWidgetsSass], ['account-styles']);
-    gulp.watch([config.extTradingWidgetsSass], ['trading-styles']);
+gulp.task('fonts', function () {
+    log('Copying fonts to build folder');
+    return gulp.src(config.fonts)
+    .pipe(gulp.dest(config.build + 'fonts'));
 });
 
-gulp.task('styles', ['clean-styles', 'app-styles', 'ext-styles'], function () { });
-
-gulp.task('app-styles', function () {
-    log('compiling app SASS --> CSS');
-
-    return gulp.src(config.appMainSass)
-        .pipe($.plumber())
-        .pipe($.sass())
-        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
-        .pipe(gulp.dest(config.temp))
-        .pipe(browserSync.reload({ stream: true }));
-});
-
-gulp.task('ext-styles', ['account-styles', 'trading-styles'], function () {});
-
-gulp.task('trading-styles', function () {
-    return gulp.src(config.extTradingWidgetsMainSass)
-        //Plumber keeps stream alive and shows error messages
-        .pipe($.plumber())
-        .pipe($.sass())
-        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
-        .pipe(gulp.dest(config.temp))
-        .pipe(browserSync.reload({ stream: true }));
-});
-
-gulp.task('account-styles', function () {
-    return gulp.src(config.extAccountWidgetsMainSass)
-        //Plumber keeps stream alive and shows error messages
-        .pipe($.plumber())
-        .pipe($.sass())
-        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
-        .pipe(gulp.dest(config.temp))
-        .pipe(browserSync.reload({ stream: true }));
+gulp.task('images', function () {
+    log('Copying and compressing images to build folder');
+    return gulp.src(config.images)
+        .pipe($.imagemin({ optimizationLevel: 4 }))
+    .pipe(gulp.dest(config.build + 'images'));
 });
 
 gulp.task('wiredep', function () {
+    log('Wire up the bower css js and our app js into the html');
     var options = config.getWiredepDefaultOptions();
     var wiredep = require('wiredep').stream;
 
@@ -115,7 +152,78 @@ gulp.task('wiredep', function () {
     .pipe(gulp.dest(config.client));
 });
 
-////////////////////////////////////////////
+gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
+    log('Wire up the app css into the html, and call wiredep');
+
+    return gulp.src(config.index)
+    .pipe($.inject(gulp.src([
+        config.appCss,
+        config.extAccountWidgetsCss,
+        config.extTradingWidgetsCss
+    ])))
+    .pipe(gulp.dest(config.client));
+});
+
+gulp.task('serve', ['lint', 'inject'], function () {
+    browserSyncInit(['./']);
+
+    gulp.watch([config.appSass], ['app-styles']);
+    gulp.watch([config.extAccountWidgetsSass], ['account-styles']);
+    gulp.watch([config.extTradingWidgetsSass], ['trading-styles']);
+});
+
+gulp.task('serve:dist', function () {
+    browserSyncInit(['dist']);
+});
+
+gulp.task('build', ['inject', 'images', 'fonts'], function () {
+    log('Optimizing the javascript, css, html for dist folder');
+    //var assets = $.useref.assets({ searchPath: './' });
+    var templateCache = [
+        config.temp + config.templateCache.file,
+        config.temp + config.accountWidgetstemplateCache.file,
+        config.temp + config.marketWidgetstemplateCache.file,
+        config.temp + config.tradingWidgetstemplateCache.file,
+    ];
+
+    return gulp.src(config.index)
+    .pipe($.plumber())
+    .pipe($.inject(gulp.src(templateCache, { read: false }), {
+        starttag: '<!-- inject:templates:js -->'
+    }))
+        .pipe($.useref({ searchPath: './' }))
+
+    .pipe(gulp.dest(config.build))
+    .pipe($.size({ title: 'build', gzip: true }));
+});
+
+gulp.task('help', $.taskListing);
+
+gulp.task('default', ['clean'], function () {
+    gulp.start('build');
+});
+
+/////////////////// HELPER FUNCTIONS /////////////////////////
+
+function loadTemplateCache(src, file, options, dest) {
+    return gulp.src(src)
+        .pipe($.htmlmin({ collapseWhitespace: true }))
+        .pipe($.angularTemplatecache(
+            file,
+            options))
+        .pipe(gulp.dest(dest));
+}
+
+function sass(path, destPath) {
+    log('Compiling sass from: ' + $.util.colors.blue(path) + ' to ' + $.util.colors.blue(destPath));
+    return gulp.src(path)
+        //Plumber keeps stream alive and shows error messages
+        .pipe($.plumber())
+        .pipe($.sass())
+        .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+        .pipe(gulp.dest(destPath))
+        .pipe(browserSync.reload({ stream: true }));
+}
 
 function clean(path) {
     log('Cleaning: ' + $.util.colors.blue(path));
@@ -133,3 +241,4 @@ function log(msg) {
         $.util.log($.util.colors.blue(msg));
     }
 }
+//////////////////// END HELPER FUNCTIONS //////////////////////////

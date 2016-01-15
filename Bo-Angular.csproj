@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include=".bowerrc" />
     <None Include="app\app.scss" />
     <Content Include="app\appConfig.js" />
     <Content Include="app\appModule.js" />
