@@ -1,6 +1,9 @@
 ﻿'use strict';
 
-angular.module('app').directive('tradingDashboard', ['$localStorage', function ($localStorage) {
+angular.module('app').directive('tradingDashboard', TradingDashboardDirective);
+
+TradingDashboardDirective.$inject = ['$localStorage'];
+function TradingDashboardDirective($localStorage) {
     return {
         scope: {
         },
@@ -30,8 +33,7 @@ angular.module('app').directive('tradingDashboard', ['$localStorage', function (
                         template: '<equity></equity>',
                         widgetSettings: {
                             id: 5001,
-                            templateUrl: 'ext-modules/tradingWidgets/equity/equityTemplate.html',
-                            controller: 'wwaSelectEmployeeController'
+                            templateUrl: 'ext-modules/tradingWidgets/equity/equityTemplate.html'
                         }
                     }
                 },
@@ -45,8 +47,7 @@ angular.module('app').directive('tradingDashboard', ['$localStorage', function (
                         template: '<options></options>',
                         widgetSettings: {
                             id: 5000,
-                            templateUrl: 'ext-modules/tradingWidgets/options/optionsTemplate.html',
-                            controller: 'wwaSelectEmployeeController'
+                            templateUrl: 'ext-modules/tradingWidgets/options/optionsTemplate.html'
                         }
                     }
                 },
@@ -60,8 +61,7 @@ angular.module('app').directive('tradingDashboard', ['$localStorage', function (
                         template: '<mutual-fund></mutual-fund>',
                         widgetSettings: {
                             id: 5002,
-                            templateUrl: 'ext-modules/tradingWidgets/mutualFund/mutualFundTemplate.html',
-                            controller: 'wwaSelectEmployeeController'
+                            templateUrl: 'ext-modules/tradingWidgets/mutualFund/mutualFundTemplate.html'
                         }
                     }
                 }
@@ -77,4 +77,4 @@ angular.module('app').directive('tradingDashboard', ['$localStorage', function (
             );
         }
     };
-}]);
+}

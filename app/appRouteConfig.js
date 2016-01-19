@@ -1,6 +1,9 @@
 ﻿'use strict';
 
-angular.module('app').config(['$routeProvider', function ($routeProvider) {
+angular.module('app').config(routeConfig);
+
+routeConfig.$inject = ['$routeProvider'];
+function routeConfig($routeProvider) {
 
     var routes = [
         {
@@ -29,4 +32,4 @@ angular.module('app').config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider.otherwise({ redirectTo: '/accountpages' });
 
-}]);
+}

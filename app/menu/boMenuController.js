@@ -1,44 +1,44 @@
 ﻿'use strict';
 
-angular.module('app').controller('boMenuController',
-    ['$scope', '$rootScope',
-        function ($scope, $rootScope) {
-            var vm = this;
-            vm.openMenuScope = null;
-            vm.showMenu = true;
-            
-            vm.getActiveElement = function () {
-                return vm.activeElement;
-            };
+angular.module('app').controller('boMenuController', BoMenuController);
 
-            vm.setActiveElement = function (el) {
-                vm.activeElement = el;
-            };
+BoMenuController.$inject = ['$scope', '$rootScope'];
+function BoMenuController($scope, $rootScope) {
+    var vm = this;
+    vm.openMenuScope = null;
+    vm.showMenu = true;
+    
+    vm.getActiveElement = function () {
+        return vm.activeElement;
+    };
 
-            vm.setRoute = function (route) {
-                $rootScope.$broadcast('bo-menu-item-selected-event',
-                    { route: route });
-            };
+    vm.setActiveElement = function (el) {
+        vm.activeElement = el;
+    };
 
-            vm.setOpenMenuScope = function (scope) {
-                vm.openMenuScope = scope;
-            };
+    vm.setRoute = function (route) {
+        $rootScope.$broadcast('bo-menu-item-selected-event',
+            { route: route });
+    };
 
-            angular.element(document).bind('click', function (e) {
-                if (vm.openMenuScope && !vm.isVertical) {
-                    if ($(e.target).parent().hasClass('bo-selectable-item')) {
-                        return;
-                    }
-                    $scope.$apply(function () {
-                        vm.openMenuScope.closeMenu();
-                    });
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
+    vm.setOpenMenuScope = function (scope) {
+        vm.openMenuScope = scope;
+    };
+
+    angular.element(document).bind('click', function (e) {
+        if (vm.openMenuScope && !vm.isVertical) {
+            if (angular.element(e.target).parent().hasClass('bo-selectable-item')) {
+                return;
+            }
+            $scope.$apply(function () {
+                vm.openMenuScope.closeMenu();
             });
-
-            $scope.$on('bo-menu-show', function (evt, data) {
-                vm.showMenu = data.show;
-            });
+            e.preventDefault();
+            e.stopPropagation();
         }
-    ]);
+    });
+
+    $scope.$on('bo-menu-show', function (evt, data) {
+        vm.showMenu = data.show;
+    });
+}

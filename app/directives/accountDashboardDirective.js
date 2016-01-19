@@ -1,6 +1,9 @@
 ﻿'use strict';
 
-angular.module('app').directive('accountDashboard', ['$localStorage', function ($localStorage) {
+angular.module('app').directive('accountDashboard', AccountDashboardDirective)
+
+AccountDashboardDirective.$inject = ['$localStorage'];
+function AccountDashboardDirective($localStorage) {
     return {
         scope: {
         },
@@ -30,8 +33,7 @@ angular.module('app').directive('accountDashboard', ['$localStorage', function (
                         template: '<activity></activity>',
                         widgetSettings: {
                             id: 5001,
-                            templateUrl: 'ext-modules/accountWidgets/activity/activityTemplate.html',
-                            controller: 'wwaSelectEmployeeController'
+                            templateUrl: 'ext-modules/accountWidgets/activity/activityTemplate.html'
                         }
                     }
                 },
@@ -45,8 +47,7 @@ angular.module('app').directive('accountDashboard', ['$localStorage', function (
                          template: '<order-status></order-status>',
                          widgetSettings: {
                              id: 5000,
-                             templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html',
-                             controller: 'wwaSelectEmployeeController'
+                             templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html'
                          }
                      }
                  }
@@ -62,4 +63,4 @@ angular.module('app').directive('accountDashboard', ['$localStorage', function (
             );
         }
     };
-}]);
+}

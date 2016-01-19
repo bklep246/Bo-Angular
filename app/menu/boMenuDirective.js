@@ -1,8 +1,11 @@
 ﻿'use strict';
 
-angular.module('app').directive('boMenu', ['$timeout', function ($timeout) {
+angular.module('app').directive('boMenu', BoMenuDirective);
+
+BoMenuDirective.$inject = ['$timeout'];
+function BoMenuDirective($timeout) {
     return {
-        scope:{
+        scope: {
 
         },
         transclude: true,
@@ -17,4 +20,4 @@ angular.module('app').directive('boMenu', ['$timeout', function ($timeout) {
             });
         }
     };
-}]);
+}

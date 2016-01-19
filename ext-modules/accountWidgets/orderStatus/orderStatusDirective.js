@@ -1,8 +1,9 @@
 ﻿'use strict';
 
-angular.module('accountWidgets').directive('orderStatus',
-    ['dataService',
-    function (dataService) {
+angular.module('accountWidgets').directive('orderStatus', OrderStatusDirective);
+
+OrderStatusDirective.$inject = ['dataService'];
+function OrderStatusDirective(dataService) {
         return {
             templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html',
             link: function (scope, el, attrs) {
@@ -12,4 +13,4 @@ angular.module('accountWidgets').directive('orderStatus',
                 });
             }
         };
-    }]);
+    }

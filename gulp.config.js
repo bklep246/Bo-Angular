@@ -16,20 +16,29 @@
         client: './',
         index: './index.html',
         appCss: temp + 'app.css',
-        extAccountWidgetsCss: temp + 'accountWidgets.css',
-        extTradingWidgetsCss: temp + 'tradingWidgets.css',
+        accountWidgetsCss: temp + 'accountWidgets.css',
+        tradingWidgetsCss: temp + 'tradingWidgets.css',
+        marketWidgetsCss: temp + 'marketWidgets.css',
         js: [
             app + '**/*Module.js',
             extModules + '**/*Module.js',
             app + '**/*.js',
             extModules + '**/*.js'
         ],
+        allhtml: [
+            app + '**/*.html',
+            extModules + 'accountWidgets/**/*.html',
+            extModules + 'marketWidgets/**/*.html',
+            extModules + 'tradingWidgets/**/*.html'
+        ],
         appMainSass: [app + '*.scss'],
         appSass: [app + '**/*.scss'],
-        extAccountWidgetsMainSass: [extModules + 'accountWidgets/*.scss'],
-        extAccountWidgetsSass: [extModules + 'accountWidgets/**/*.scss'],
-        extTradingWidgetsMainSass: [extModules + 'tradingWidgets/*.scss'],
-        extTradingWidgetsSass: [extModules + 'tradingWidgets/**/*.scss'],
+        accountWidgetsMainSass: [extModules + 'accountWidgets/*.scss'],
+        accountWidgetsSass: [extModules + 'accountWidgets/**/*.scss'],
+        tradingWidgetsMainSass: [extModules + 'tradingWidgets/*.scss'],
+        tradingWidgetsSass: [extModules + 'tradingWidgets/**/*.scss'],
+        marketWidgetsMainSass: [extModules + 'marketWidgets/*.scss'],
+        marketWidgetsSass: [extModules + 'marketWidgets/**/*.scss'],
 
         /** app template cache */
         templateCache: {

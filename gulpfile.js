@@ -73,27 +73,31 @@ gulp.task('templatecache', ['appTemplateCache', 'accountTemplateCache', 'marketT
 ///////////////////// END TEMPLATE CACHE  /////////////////////////////////
 
 /////////////////////// STYLES - CSS/SASS ///////////////////////////////////////////
-gulp.task('styles', ['clean-styles', 'app-styles', 'ext-styles'], function () { });
+gulp.task('styles', ['clean-styles', 'app-styles', 'ext-styles']);
 gulp.task('app-styles', function () {
     sass(config.appMainSass, config.temp);
 });
 
-gulp.task('ext-styles', ['account-styles', 'trading-styles'], function () { });
+gulp.task('ext-styles', ['account-styles', 'market-styles', 'trading-styles']);
 gulp.task('trading-styles', function () {
-    sass(config.extTradingWidgetsMainSass, config.temp);
+    sass(config.tradingWidgetsMainSass, config.temp);
 });
 
 gulp.task('account-styles', function () {
-    sass(config.extAccountWidgetsMainSass, config.temp);
+    sass(config.accountWidgetsMainSass, config.temp);
+});
+
+gulp.task('market-styles', function () {
+    sass(config.marketWidgetsMainSass, config.temp);
 });
 //////////////////// END STYLES //////////////////////////////////////////
 
 //////////////////// CLEAN TASKS /////////////////////////////////////////
-gulp.task('clean-styles', function () {
+gulp.task('clean-fonts', function () {
     clean(config.build + 'fonts/**/*.*');
 });
 
-gulp.task('clean-fonts', function () {
+gulp.task('clean-styles', function () {
     clean(config.temp + '**/*.css');
 });
 
@@ -125,7 +129,8 @@ gulp.task('lint', function () {
         .pipe($.eslint.format())
         // To have the process exit with an error code (1) on 
         // lint error, return the stream and pipe to failAfterError last. 
-        .pipe($.eslint.failAfterError());
+    //.pipe($.eslint.failAfterError())
+    .pipe($.size());
 });
 
 gulp.task('fonts', function () {
@@ -158,8 +163,9 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
     return gulp.src(config.index)
     .pipe($.inject(gulp.src([
         config.appCss,
-        config.extAccountWidgetsCss,
-        config.extTradingWidgetsCss
+        config.accountWidgetsCss,
+        config.marketWidgetsCss,
+        config.tradingWidgetsCss
     ])))
     .pipe(gulp.dest(config.client));
 });
@@ -167,12 +173,22 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
 gulp.task('serve', ['lint', 'inject'], function () {
     browserSyncInit(['./']);
 
+    //watch sass changes
     gulp.watch([config.appSass], ['app-styles']);
-    gulp.watch([config.extAccountWidgetsSass], ['account-styles']);
-    gulp.watch([config.extTradingWidgetsSass], ['trading-styles']);
+    gulp.watch([config.accountWidgetsSass], ['account-styles']);
+    gulp.watch([config.tradingWidgetsSass], ['trading-styles']);
+    gulp.watch([config.marketWidgetsSass], ['market-styles']);
+
+    //watch html changes
+    gulp.watch(config.allhtml, reload);
+
+    //watch js changes
+    gulp.watch(config.alljs, function () {
+        lintReload(config.alljs);
+    });
 });
 
-gulp.task('serve:dist', function () {
+gulp.task('serve:dist', ['build'], function () {
     browserSyncInit(['dist']);
 });
 
@@ -192,7 +208,9 @@ gulp.task('build', ['inject', 'images', 'fonts'], function () {
         starttag: '<!-- inject:templates:js -->'
     }))
         .pipe($.useref({ searchPath: './' }))
-
+        .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.cssnano()))
+    .pipe($.if('*.html', $.htmlmin()))
     .pipe(gulp.dest(config.build))
     .pipe($.size({ title: 'build', gzip: true }));
 });
@@ -204,6 +222,15 @@ gulp.task('default', ['clean'], function () {
 });
 
 /////////////////// HELPER FUNCTIONS /////////////////////////
+
+function lintReload(path) {
+    log('analyzing source with eslint');
+    return gulp.src(path)
+        .pipe($.eslint())
+        .pipe($.eslint.format())
+        //.pipe($.eslint.failAfterError())
+        .pipe(browserSync.reload({ stream: true }));
+}
 
 function loadTemplateCache(src, file, options, dest) {
     return gulp.src(src)
