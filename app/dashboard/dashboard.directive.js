@@ -1,8 +1,10 @@
 ﻿'use strict';
 
-angular.module('app').directive('boDashboard', function () {
+angular.module('app').directive('dashboard', dashboard);
+
+function dashboard() {
     return {
-        templateUrl: 'app/dashboard/boDashboardTemplate.html',
+        templateUrl: 'app/dashboard/dashboard.html',
         link: function (scope, element, attrs) {
             scope.addNewWidget = function (widget) {
                 //deep copy widget settings to be used in new widget
@@ -12,4 +14,4 @@ angular.module('app').directive('boDashboard', function () {
             };
         }
     };
-});
+}

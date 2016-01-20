@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-angular.module('tradingWidgets').directive('equity', EquityDirective);
+angular.module('tradingWidgets').directive('equity', Equity);
 
-EquityDirective.$inject = ['dataService'];
-function EquityDirective(dataService) {
+Equity.$inject = ['dataService'];
+function Equity(dataService) {
     return {
-        templateUrl: 'ext-modules/tradingWidgets/equity/equityTemplate.html',
+        templateUrl: 'ext-modules/tradingWidgets/equity/equity.html',
         link: function (scope, el, attrs) {
             dataService.getEmployee(scope.item.widgetSettings.id)
             .then(function (data) {

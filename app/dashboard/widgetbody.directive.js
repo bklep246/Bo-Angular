@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-angular.module('app').directive('boWidgetBody', BoWidgetBodyDirective);
+angular.module('app').directive('widgetBody', widgetBody);
 
-BoWidgetBodyDirective.$inject = ['$compile', '$modal'];
-function BoWidgetBodyDirective($compile, $modal) {
+widgetBody.$inject = ['$compile', '$modal'];
+function widgetBody($compile, $modal) {
     return {
-        templateUrl: 'app/dashboard/boWidgetBodyTemplate.html',
+        templateUrl: 'app/dashboard/widgetBody.html',
         link: function (scope, element, attrs) {
             var newElement = angular.element(scope.item.template);
             element.append(newElement);

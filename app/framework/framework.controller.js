@@ -1,9 +1,9 @@
 ﻿'use strict';
 
-angular.module('app').controller('boFrameworkController', BoFrameworkController);
+angular.module('app').controller('FrameworkController', FrameworkController);
 
-BoFrameworkController.$inject = ['$scope', '$rootScope', '$window', '$timeout', '$location'];
-function BoFrameworkController($scope, $rootScope, $window, $timeout, $location) {
+FrameworkController.$inject = ['$scope', '$rootScope', '$window', '$timeout', '$location'];
+function FrameworkController($scope, $rootScope, $window, $timeout, $location) {
     var vm = this;
     vm.isMenuVisible = true;
     vm.isMenuButtonVisible = true;
@@ -26,14 +26,14 @@ function BoFrameworkController($scope, $rootScope, $window, $timeout, $location)
         }, 0);
     });
 
-    angular.element($window).on('resize.boFramework', function () {
+    angular.element($window).on('resize.framework', function () {
         $scope.$apply(function () {
             checkWidth();
             //broadcastMenuState();
         });
     });
     $scope.$on('$destroy', function () {
-        angular.element($window).off('resize.boFramework'); // remove the handler added earlier
+        angular.element($window).off('resize.framework'); // remove the handler added earlier
     });
 
     var checkWidth = function () {

@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-angular.module('tradingWidgets').directive('options', OptionsDirective);
+angular.module('accountWidgets').directive('orderStatus', OrderStatus);
 
-OptionsDirective.$inject = ['dataService'];
-function OptionsDirective(dataService) {
+OrderStatus.$inject = ['dataService'];
+function OrderStatus(dataService) {
     return {
-        templateUrl: 'ext-modules/tradingWidgets/options/optionsTemplate.html',
+        templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatus.html',
         link: function (scope, el, attrs) {
             dataService.getEmployee(scope.item.widgetSettings.id)
             .then(function (data) {

@@ -20,8 +20,8 @@
         tradingWidgetsCss: temp + 'tradingWidgets.css',
         marketWidgetsCss: temp + 'marketWidgets.css',
         js: [
-            app + '**/*Module.js',
-            extModules + '**/*Module.js',
+            app + '**/*.module.js',
+            extModules + '**/*.module.js',
             app + '**/*.js',
             extModules + '**/*.js'
         ],

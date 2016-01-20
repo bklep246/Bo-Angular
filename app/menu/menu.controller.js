@@ -1,9 +1,9 @@
 ﻿'use strict';
 
-angular.module('app').controller('boMenuController', BoMenuController);
+angular.module('app').controller('MenuController', MenuController);
 
-BoMenuController.$inject = ['$scope', '$rootScope'];
-function BoMenuController($scope, $rootScope) {
+MenuController.$inject = ['$scope', '$rootScope'];
+function MenuController($scope, $rootScope) {
     var vm = this;
     vm.openMenuScope = null;
     vm.showMenu = true;

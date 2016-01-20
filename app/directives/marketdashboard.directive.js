@@ -1,16 +1,16 @@
 ﻿'use strict';
 
-angular.module('app').directive('accountDashboard', AccountDashboardDirective)
+angular.module('app').directive('marketDashboard', marketDashboard);
 
-AccountDashboardDirective.$inject = ['$localStorage'];
-function AccountDashboardDirective($localStorage) {
+marketDashboard.$inject = ['$localStorage'];
+function marketDashboard($localStorage) {
     return {
         scope: {
         },
-        template: '<bo-dashboard></bo-dashboard>',
+        template: '<dashboard></dashboard>',
         link: function (scope) {
 
-            scope.title = 'Account Widgets Dashboard';
+            scope.title = 'Market Widgets Dashboard';
 
             scope.gridsterOpts = {
                 columns: 12,
@@ -38,27 +38,27 @@ function AccountDashboardDirective($localStorage) {
                     }
                 },
                 {
-                     title: 'Order Status',
-                     settings: {
-                         sizeX: 5,
-                         sizeY: 3,
-                         minSizeX: 2,
-                         minSizeY: 2,
-                         template: '<order-status></order-status>',
-                         widgetSettings: {
-                             id: 5000,
-                             templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html'
-                         }
-                     }
-                 }
+                    title: 'Order Status',
+                    settings: {
+                        sizeX: 5,
+                        sizeY: 3,
+                        minSizeX: 2,
+                        minSizeY: 2,
+                        template: '<order-status></order-status>',
+                        widgetSettings: {
+                            id: 5000,
+                            templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html'
+                        }
+                    }
+                }
             ];
 
             //widgets collection - new widgets get added here
             //check localstorage for saved widgets
-            scope.widgets = $localStorage.accountwidgets || [];
+            scope.widgets = $localStorage.marketwidgets || [];
 
             scope.$watch('widgets', function () {
-                $localStorage.accountwidgets = scope.widgets;
+                $localStorage.marketwidgets = scope.widgets;
             }, true
             );
         }

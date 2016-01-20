@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-angular.module('tradingWidgets').directive('mutualFund', MutualFundDirective);
+angular.module('tradingWidgets').directive('mutualFund', MutualFund);
 
-MutualFundDirective.$inject = ['dataService'];
-function MutualFundDirective(dataService) {
+MutualFund.$inject = ['dataService'];
+function MutualFund(dataService) {
     return {
-        templateUrl: 'ext-modules/tradingWidgets/mutualFund/mutualFundTemplate.html',
+        templateUrl: 'ext-modules/tradingWidgets/mutualFund/mutualFund.html',
         link: function (scope, el, attrs) {
             dataService.getEmployee(scope.item.widgetSettings.id)
             .then(function (data) {

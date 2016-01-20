@@ -1,16 +1,16 @@
 ﻿'use strict';
 
-angular.module('app').directive('marketDashboard', MarketDashboardDirective);
+angular.module('app').directive('tradingDashboard', tradingDashboard);
 
-MarketDashboardDirective.$inject = ['$localStorage'];
-function MarketDashboardDirective($localStorage) {
+tradingDashboard.$inject = ['$localStorage'];
+function tradingDashboard($localStorage) {
     return {
         scope: {
         },
-        template: '<bo-dashboard></bo-dashboard>',
+        template: '<dashboard></dashboard>',
         link: function (scope) {
 
-            scope.title = 'Market Widgets Dashboard';
+            scope.title = 'Trading Widgets Dashboard';
 
             scope.gridsterOpts = {
                 columns: 12,
@@ -24,30 +24,44 @@ function MarketDashboardDirective($localStorage) {
 
             scope.widgetDefinitions = [
                 {
-                    title: 'Activity',
+                    title: 'Equity',
                     settings: {
                         sizeX: 3,
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<activity></activity>',
+                        template: '<equity></equity>',
                         widgetSettings: {
                             id: 5001,
-                            templateUrl: 'ext-modules/accountWidgets/activity/activityTemplate.html'
+                            templateUrl: 'ext-modules/tradingWidgets/equity/equityTemplate.html'
                         }
                     }
                 },
                 {
-                    title: 'Order Status',
+                    title: 'Options',
                     settings: {
                         sizeX: 5,
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<order-status></order-status>',
+                        template: '<options></options>',
                         widgetSettings: {
                             id: 5000,
-                            templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html'
+                            templateUrl: 'ext-modules/tradingWidgets/options/optionsTemplate.html'
+                        }
+                    }
+                },
+                {
+                    title: 'Mutual Fund',
+                    settings: {
+                        sizeX: 5,
+                        sizeY: 3,
+                        minSizeX: 2,
+                        minSizeY: 2,
+                        template: '<mutual-fund></mutual-fund>',
+                        widgetSettings: {
+                            id: 5002,
+                            templateUrl: 'ext-modules/tradingWidgets/mutualFund/mutualFundTemplate.html'
                         }
                     }
                 }
@@ -55,10 +69,10 @@ function MarketDashboardDirective($localStorage) {
 
             //widgets collection - new widgets get added here
             //check localstorage for saved widgets
-            scope.widgets = $localStorage.marketwidgets || [];
+            scope.widgets = $localStorage.tradingwidgets || [];
 
             scope.$watch('widgets', function () {
-                $localStorage.marketwidgets = scope.widgets;
+                $localStorage.tradingwidgets = scope.widgets;
             }, true
             );
         }

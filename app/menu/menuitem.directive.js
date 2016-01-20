@@ -1,14 +1,16 @@
 ﻿'use strict';
 
-angular.module('app').directive('boMenuItem', function () {
+angular.module('app').directive('menuItem', menuItem);
+
+function menuItem() {
     return {
-        require: '^boMenu',
+        require: '^menu',
         scope: {
             label: '@',
             icon: '@',
             route: '@'
         },
-        templateUrl: 'app/menu/boMenuItemTemplate.html',
+        templateUrl: 'app/menu/menuItem.html',
         link: function (scope, el, attr, ctrl) {
 
             scope.isActive = function () {
@@ -30,4 +32,4 @@ angular.module('app').directive('boMenuItem', function () {
             });
         }
     };
-});
+}
