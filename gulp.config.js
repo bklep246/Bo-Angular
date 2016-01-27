@@ -28,7 +28,8 @@
             app + '**/*.module.js',
             extModules + '**/*.module.js',
             app + '**/*.js',
-            extModules + '**/*.js'
+            extModules + '**/*.js',
+            '!app/**/*.spec.js'
         ],
         allhtml: [
             app + '**/*.html',

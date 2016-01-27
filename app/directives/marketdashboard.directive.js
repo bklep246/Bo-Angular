@@ -24,30 +24,30 @@ function marketDashboard($localStorage) {
 
             scope.widgetDefinitions = [
                 {
-                    title: 'Activity',
+                    title: 'News',
                     settings: {
                         sizeX: 3,
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<activity></activity>',
+                        template: '<news></news>',
                         widgetSettings: {
                             id: 5001,
-                            templateUrl: 'ext-modules/accountWidgets/activity/activityTemplate.html'
+                            templateUrl: 'ext-modules/marketWidgets/news/news.html'
                         }
                     }
                 },
                 {
-                    title: 'Order Status',
+                    title: 'Watchlist',
                     settings: {
                         sizeX: 5,
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<order-status></order-status>',
+                        template: '<watchlist></watchlist>',
                         widgetSettings: {
                             id: 5000,
-                            templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html'
+                            templateUrl: 'ext-modules/marketWidgets/watchlist/watchlist.html'
                         }
                     }
                 }

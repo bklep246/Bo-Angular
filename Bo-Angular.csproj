@@ -97,7 +97,15 @@
     <None Include="ext-modules\accountWidgets\orderStatus\orderStatus.scss" />
     <Content Include="ext-modules\accountWidgets\orderStatus\orderStatus.directive.js" />
     <Content Include="ext-modules\accountWidgets\orderStatus\orderStatus.html" />
+    <Content Include="ext-modules\marketWidgets\marketWidgets.module.js" />
+    <Content Include="ext-modules\marketWidgets\watchlist\watchlist.directive.js" />
+    <Content Include="ext-modules\marketWidgets\watchlist\watchlist.html" />
+    <Content Include="ext-modules\marketWidgets\news\news.directive.js" />
+    <Content Include="ext-modules\marketWidgets\news\news.html" />
     <Content Include="ext-modules\tradingWidgets\tradingWidgets.module.js" />
+    <Content Include="ext-modules\marketWidgets\news\news.scss" />
+    <Content Include="ext-modules\marketWidgets\marketWidgets.scss" />
+    <Content Include="ext-modules\marketWidgets\watchlist\watchlist.scss" />
     <None Include="ext-modules\tradingWidgets\equity\equity.scss" />
     <Content Include="ext-modules\tradingWidgets\equity\equity.directive.js" />
     <Content Include="ext-modules\tradingWidgets\equity\equity.html" />
@@ -139,7 +147,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ext-modules\marketWidgets\" />
     <Folder Include="tests\server-integration\" />
   </ItemGroup>
   <PropertyGroup>

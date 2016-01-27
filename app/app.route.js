@@ -21,7 +21,7 @@ function routeConfig($routeProvider) {
         {
             url: '/marketdata',
             config: {
-                template: '<div>market data pages</div>'
+                template: '<market-dashboard></market-dashboard>'
             }
         }
     ];
