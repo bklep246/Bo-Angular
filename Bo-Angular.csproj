@@ -80,9 +80,11 @@
     <Content Include="app\directives\marketDashboard.directive.js" />
     <Content Include="app\directives\tradingDashboard.directive.js" />
     <Content Include="app\framework\framework.controller.js" />
+    <Content Include="app\framework\framework.controller.spec.js" />
     <Content Include="app\framework\framework.directive.js" />
     <Content Include="app\framework\framework.html" />
     <Content Include="app\menu\menu.controller.js" />
+    <Content Include="app\menu\menu.controller.spec.js" />
     <Content Include="app\menu\menu.directive.js" />
     <Content Include="app\menu\menuItem.directive.js" />
     <Content Include="app\menu\menuItem.html" />
@@ -130,6 +132,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="tests\controllers\framework.spec.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

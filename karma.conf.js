@@ -7,17 +7,17 @@
 
         // frameworks to use
         // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
+        frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
         files: gulpConfig.karma.files,
 
         // list of files to exclude
-        exclude: gulpConfig.karma.exclude,
+        exclude: [],
 
-        proxies: {
-            '/': 'http://localhost:8888/'
-        },
+        //proxies: {
+        //    '/': 'http://localhost:8888/'
+        //},
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -36,6 +36,26 @@
         // web server port
         port: 9876,
 
+        // Start these browsers, currently available:
+        // - Chrome
+        // - ChromeCanary
+        // - Firefox
+        // - Opera
+        // - Safari (only Mac)
+        // - PhantomJS
+        // - IE (only Windows)
+        browsers: [
+          'PhantomJS'
+        ],
+
+        // Which plugins to enable
+        plugins: [
+            'karma-coverage',
+            'karma-chrome-launcher',
+          'karma-phantomjs-launcher',
+          'karma-jasmine'
+        ],
+
         // enable / disable colors in the output (reporters and logs)
         colors: true,
 
@@ -50,10 +70,10 @@
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         //        browsers: ['Chrome', 'ChromeCanary', 'FirefoxAurora', 'Safari', 'PhantomJS'],
-        browsers: ['PhantomJS'],
+        //browsers: ['Chrome'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: true
     });
 };

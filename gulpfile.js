@@ -170,6 +170,10 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
     .pipe(gulp.dest(config.client));
 });
 
+gulp.task('test', function (done) {
+    startTests(true /*singleRun*/, done)
+});
+
 gulp.task('serve', ['lint', 'inject'], function () {
     browserSyncInit(['./']);
 
@@ -266,6 +270,35 @@ function log(msg) {
         }
     } else {
         $.util.log($.util.colors.blue(msg));
+    }
+}
+
+function startTests(singleRun, done) {
+    var Server = require('karma').Server;
+    //var excludeFiles = [];
+    //var serverSpecs = config.serverIntegrationSpecs;
+    //excludeFiles = serverSpecs;
+    
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        //exclude: excludeFiles,
+        singleRun: !!singleRun
+    }, karmaCompleted).start();
+
+    //karma.start({
+    //    config: __dirname + '/karma.conf.js',
+    //    exclude: excludeFiles,
+    //    single: !!singleRun
+    //}, karmaCompleted);
+
+    function karmaCompleted(karmaResult) {
+        log('Karma Completed');
+        if (karmaResult === 1) {
+            done('karma: tests failed with code ' + karmaResult);
+        }
+        else {
+            done();
+        }
     }
 }
 //////////////////// END HELPER FUNCTIONS //////////////////////////

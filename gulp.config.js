@@ -1,10 +1,15 @@
 ﻿module.exports = function () {
     var temp = '.tmp/';
     var app = 'app/';
+    var report = './report/';
     var extModules = 'ext-modules/';
+    var wiredep = require('wiredep');
+    var bowerFiles = wiredep({ devDependencies: true })['js'];
+    var client = './';
 
     var config = {
         temp: temp,
+        report: report,
         alljs: [app + '**/*.js', 'ext-modules/**/*.js'],
         build: './dist/',
         fonts: './bower_components/font-awesome/fonts/**/*.*',
@@ -13,7 +18,7 @@
         marketWidgetsHtmlTemplates: extModules + 'marketWidgets/**/*.html',
         tradingWidgetsHtmlTemplates: extModules + 'tradingWidgets/**/*.html',
         images: './images/**/*.*',
-        client: './',
+        client: client,
         index: './index.html',
         appCss: temp + 'app.css',
         accountWidgetsCss: temp + 'accountWidgets.css',
@@ -77,6 +82,13 @@
             json: require('./bower.json'),
             directory: './bower_components/',
             ignorePath: '../..'
+        },
+
+        /*Karma tests and settings*/
+        //specHelpers: [client + 'test-helpers/*.js'],
+        //serverIntegrationSpecs: [client + 'tests/server-integration/**/*.spec.js'],
+        karma: {
+
         }
     };
 
@@ -89,5 +101,38 @@
         return options;
     };
 
+    config.karma = getKarmaOptions();
+
     return config;
+
+    function getKarmaOptions() {
+        var options = {
+            files: [].concat(
+                bowerFiles,
+                //config.specHelpers,
+                app + '**/*.module.js',
+                extModules + '**/*.module.js',
+                app + '**/*.js',
+                extModules + '**/*.js',
+                temp + config.templateCache.file,
+                temp + config.accountWidgetstemplateCache.file,
+                //temp + config.marketWidgetstemplateCache.file,
+                temp + config.tradingWidgetstemplateCache.file,
+                client + 'tests/**/*.spec.js'
+                //config.serverIntegrationSpecs
+                ),
+            exclude: [],
+            coverage: {
+                dir: report + 'coverage',
+                reporters: [
+                    { type: 'html', subdir: 'report-html' },
+                    { type: 'lcov', subdir: 'report-lcov' },
+                    { type: 'text-summary'}
+                ]
+            },
+            preprocessors: {}
+        };
+        options.preprocessors[app + '**/!(*.spec)+(.js)'] = ['coverage'];
+        return options;
+    }
 };
