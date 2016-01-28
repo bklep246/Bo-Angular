@@ -1,13 +1,31 @@
 ﻿
 <div class="equity-widget">
     <div class="equity-heading">
-        
+
         <span class="equity-title">Equity Trading</span>
     </div>
     <div class="equity-body">
         <div class="equity-row">
-            <div class="equity-name-area">
-                <h2>Equity Trading</h2>
+
+            <form>
+                <label><input type="radio" ng-model="action" value="Buy">Buy</label><br />
+                <label><input type="radio" ng-model="action" value="Sell">Sell</label><br />
+                <label><input type="radio" ng-model="action" value="SellShort">Sell Short</label><br />
+                <label><input type="radio" ng-model="action" value="BuyToCover">Buy To Cover</label><br />
+                <br />
+                <label>Symbol <input type="text" ng-model="symbol" /></label><br />
+                <label for="orderType">
+                    Order Type
+                    <select name="orderType" ng-model="orderType">
+                        <option value="market">Market</option>
+                        <option value="limit">Limit</option>
+                        <option value="stopLimit">Stop Limit</option>
+                    </select><br>
+                </label>
+            </form>
+            
+            <div>
+                
             </div>
         </div>
     </div>

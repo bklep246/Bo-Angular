@@ -5,7 +5,9 @@ angular.module('accountWidgets').directive('orderStatus', OrderStatus);
 OrderStatus.$inject = ['dataService'];
 function OrderStatus(dataService) {
     return {
-        templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatus.html',
+        templateUrl: function (tElement, tAttrs) {
+            return tAttrs.templateUrl;
+        },
         link: function (scope, el, attrs) {
             dataService.getEmployee(scope.item.widgetSettings.id)
             .then(function (data) {

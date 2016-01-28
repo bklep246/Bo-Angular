@@ -30,10 +30,9 @@ function marketDashboard($localStorage) {
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<news></news>',
+                        template: '<news template-url="ext-modules/marketWidgets/news/news.html"></news>',
                         widgetSettings: {
-                            id: 5001,
-                            templateUrl: 'ext-modules/marketWidgets/news/news.html'
+                            id: 5001
                         }
                     }
                 },
@@ -44,10 +43,9 @@ function marketDashboard($localStorage) {
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<watchlist></watchlist>',
+                        template: '<watchlist template-url="ext-modules/marketWidgets/watchlist/watchlist.html"></watchlist>',
                         widgetSettings: {
-                            id: 5000,
-                            templateUrl: 'ext-modules/marketWidgets/watchlist/watchlist.html'
+                            id: 5000
                         }
                     }
                 }

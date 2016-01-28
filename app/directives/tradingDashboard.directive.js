@@ -30,10 +30,9 @@ function tradingDashboard($localStorage) {
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<equity></equity>',
+                        template: '<equity template-url="ext-modules/tradingWidgets/equity/equity.html"></equity>',
                         widgetSettings: {
-                            id: 5001,
-                            templateUrl: 'ext-modules/tradingWidgets/equity/equityTemplate.html'
+                            id: 5001
                         }
                     }
                 },
@@ -44,10 +43,9 @@ function tradingDashboard($localStorage) {
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<options></options>',
+                        template: '<options template-url="ext-modules/tradingWidgets/options/options.html"></options>',
                         widgetSettings: {
-                            id: 5000,
-                            templateUrl: 'ext-modules/tradingWidgets/options/optionsTemplate.html'
+                            id: 5000
                         }
                     }
                 },
@@ -58,10 +56,9 @@ function tradingDashboard($localStorage) {
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<mutual-fund></mutual-fund>',
+                        template: '<mutual-fund template-url="ext-modules/tradingWidgets/mutualFund/mutualFund.html"></mutual-fund>',
                         widgetSettings: {
-                            id: 5002,
-                            templateUrl: 'ext-modules/tradingWidgets/mutualFund/mutualFundTemplate.html'
+                            id: 5002
                         }
                     }
                 }

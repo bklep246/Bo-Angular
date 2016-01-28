@@ -3,6 +3,7 @@
     var app = 'app/';
     var report = './report/';
     var extModules = 'ext-modules/';
+    var services = 'services';
     var wiredep = require('wiredep');
     var bowerFiles = wiredep({ devDependencies: true })['js'];
     var client = './';
@@ -10,7 +11,8 @@
     var config = {
         temp: temp,
         report: report,
-        alljs: [app + '**/*.js', 'ext-modules/**/*.js'],
+        services: services,
+        alljs: [app + '**/*.js', 'ext-modules/**/*.js', 'services/**/*.js'],
         build: './dist/',
         fonts: './bower_components/font-awesome/fonts/**/*.*',
         htmltemplates: app + '**/*.html',
@@ -27,8 +29,10 @@
         js: [
             app + '**/*.module.js',
             extModules + '**/*.module.js',
+            services + '**/*.module.js',
             app + '**/*.js',
             extModules + '**/*.js',
+            services + '**/*.js',
             '!app/**/*.spec.js'
         ],
         allhtml: [

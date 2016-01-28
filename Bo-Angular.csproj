@@ -89,7 +89,7 @@
     <Content Include="app\menu\menuItem.directive.js" />
     <Content Include="app\menu\menuItem.html" />
     <Content Include="app\menu\menu.html" />
-    <Content Include="app\services\dataService.js" />
+    <Content Include="services\dataService.js" />
     <Content Include="ext-modules\accountWidgets\accountWidgets.module.js" />
     <None Include="ext-modules\accountWidgets\activity\activity.scss" />
     <Content Include="ext-modules\accountWidgets\activity\activity.directive.js" />
@@ -140,6 +140,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="services\services.module.js" />
     <Content Include="tests\controllers\framework.spec.js" />
     <Content Include="Web.config" />
   </ItemGroup>

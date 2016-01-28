@@ -15,14 +15,20 @@
 
 .equity-body {
     display: table;
-    background-color: lemonchiffon;
-    color: white;
+    background-color: white;
+    color: black;
     width: 100%;
     height: 100%;
+    padding:10px;
+    font-size:14px;
 }
 
 .equity-row {
     display: table-row;
+}
+
+.equity-cell {
+    display: table-cell;
 }
 
 .equity-icon {

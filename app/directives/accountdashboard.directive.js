@@ -30,10 +30,9 @@ function accountDashboard($localStorage) {
                         sizeY: 3,
                         minSizeX: 2,
                         minSizeY: 2,
-                        template: '<activity></activity>',
+                        template: '<activity template-url="ext-modules/accountWidgets/activity/activity.html"></activity>',
                         widgetSettings: {
-                            id: 5001,
-                            templateUrl: 'ext-modules/accountWidgets/activity/activityTemplate.html'
+                            id: 5001
                         }
                     }
                 },
@@ -44,10 +43,9 @@ function accountDashboard($localStorage) {
                          sizeY: 3,
                          minSizeX: 2,
                          minSizeY: 2,
-                         template: '<order-status></order-status>',
+                         template: '<order-status template-url="ext-modules/accountWidgets/orderStatus/orderStatus.html"></order-status>',
                          widgetSettings: {
-                             id: 5000,
-                             templateUrl: 'ext-modules/accountWidgets/orderStatus/orderStatusTemplate.html'
+                             id: 5000
                          }
                      }
                  }
