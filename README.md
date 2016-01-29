@@ -1,4 +1,4 @@
-# Bo-Angular
+# Bo-Angular-Bento
 test project for beta online next gen
 
 ## Project still under development
