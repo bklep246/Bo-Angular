@@ -1,4 +1,4 @@
-# Bo-Angular
+# Bo-Angular Kendo
 test project for beta online next gen
 
 ## Project still under development
