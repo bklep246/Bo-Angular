@@ -23,6 +23,12 @@ function routeConfig($routeProvider) {
             config: {
                 template: '<market-dashboard></market-dashboard>'
             }
+        },
+        {
+            url: '/bentocomponents',
+            config: {
+                template: '<bento-dashboard></bento-dashboard>'
+            }
         }
     ];
 

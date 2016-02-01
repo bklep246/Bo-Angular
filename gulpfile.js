@@ -160,14 +160,14 @@ gulp.task('wiredep', function () {
 gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function () {
     log('Wire up the app css into the html, and call wiredep');
 
-    return gulp.src(config.index)
-    .pipe($.inject(gulp.src([
-        config.appCss,
-        config.accountWidgetsCss,
-        config.marketWidgetsCss,
-        config.tradingWidgetsCss
-    ])))
-    .pipe(gulp.dest(config.client));
+    //return gulp.src(config.index)
+    //.pipe($.inject(gulp.src([
+    //    config.appCss,
+    //    config.accountWidgetsCss,
+    //    config.marketWidgetsCss,
+    //    config.tradingWidgetsCss
+    //])))
+    //.pipe(gulp.dest(config.client));
 });
 
 gulp.task('test', function (done) {

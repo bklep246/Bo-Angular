@@ -1,0 +1,109 @@
+/**
+ * Bento Modern theme for SpreadJS
+ *  v.0.1.1
+ * Reference - https://thehub.thomsonreuters.com/docs/DOC-832161
+ * Maintained by Dave Collier, Chi Gao, Aaron Mendez
+ */
+/**
+ * SpreadJS Base
+ */
+.bento-spreadjs {
+  position: absolute;
+  top: 87px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+}
+.bento-spreadjs .wijmo-wijsuperpanel-vbarcontainer,
+.bento-spreadjs .wijmo-wijsuperpanel-hbarcontainer {
+  background: #ffffff;
+}
+.bento-spreadjs .ui-state-default,
+.bento-spreadjs .ui-widget-content .ui-state-default,
+.bento-spreadjs .ui-widget-header .ui-state-default {
+  border: 1px solid #cccccc;
+  background: #eeeeee;
+  font-weight: normal;
+  color: #212121;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.bento-spreadjs .ui-state-hover,
+.bento-spreadjs .ui-widget-content .ui-state-hover,
+.bento-spreadjs .ui-widget-header .ui-state-hover,
+.bento-spreadjs .ui-state-focus,
+.bento-spreadjs .ui-widget-content .ui-state-focus,
+.bento-spreadjs .ui-widget-header .ui-state-focus {
+  -moz-box-shadow: inset 0 1px 0 #fff;
+  border: 1px solid #cccccc;
+  background: #dddddd;
+  font-weight: normal;
+  color: #212121;
+}
+.bento-spreadjs .ui-state-highlight,
+.bento-spreadjs .ui-widget-content .ui-state-highlight,
+.bento-spreadjs .ui-widget-header .ui-state-highlight {
+  border: 1px solid #cccccc;
+  background: #dddddd;
+  color: #212121;
+}
+.wijmoThemeHelper.ui-state-default,
+.wijmoThemeHelper.ui-widget-content .ui-state-default,
+.wijmoThemeHelper.ui-widget-header .ui-state-default {
+  border: 1px solid #cccccc;
+  background: #eeeeee;
+  font-weight: normal;
+  color: #212121;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.wijmoThemeHelper.ui-state-hover,
+.wijmoThemeHelper.ui-widget-content .ui-state-hover,
+.wijmoThemeHelper.ui-widget-header .ui-state-hover,
+.wijmoThemeHelper.ui-state-focus,
+.wijmoThemeHelper.ui-widget-content .ui-state-focus,
+.wijmoThemeHelper.ui-widget-header .ui-state-focus {
+  -moz-box-shadow: inset 0 1px 0 #fff;
+  border: 1px solid #cccccc;
+  background: #dddddd;
+  font-weight: normal;
+  color: #212121;
+}
+.wijmoThemeHelper.ui-state-highlight,
+.wijmoThemeHelper.ui-widget-content .ui-state-highlight,
+.wijmoThemeHelper.ui-widget-header .ui-state-highlight {
+  border: 1px solid #cccccc;
+  background: #dddddd;
+  color: #212121;
+}
+/**
+ * SpreadJS Formula Bar
+ */
+.bento-spreadjs-formulabar {
+  width: 100%;
+  border-right: 1px solid #cccccc;
+}
+.bento-spreadjs-formulabar td:first-child {
+  width: 100px;
+}
+.bento-spreadjs-formulabar td:first-child .bento-spreadjs-positionbox {
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-top: none;
+  border-bottom: none;
+  text-align: center;
+}
+.bento-spreadjs-formulabar .bento-spreadjs-formulabox {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 100%;
+  border: none;
+  padding-left: 10px;
+  height: 30px;
+}

@@ -1,0 +1,66 @@
+﻿<div class="bento-container" style="background-color:white;">
+    <h2>Bento Dashboard</h2>
+    <!-- this is the grid -->
+    <uib-tabset class="tabs-top">
+        <uib-tab>
+            <uib-tab-heading>
+                Flex Grid
+                <span class="badge">{{cntValA}}</span>
+            </uib-tab-heading>
+            <label class="strong-block">Wijmo 5 Flex Grid</label>
+            <div class="row" style="height:600px; overflow:scroll">
+                <div class="col-md-6">
+                    <wj-flex-grid items-source="vm.data" control="flex">
+                    </wj-flex-grid>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab>
+            <uib-tab-heading>
+                Input Controls
+                <span class="badge">{{cntValB}}</span>
+            </uib-tab-heading>
+            <label class="strong-block">Bento Controls</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <div bento-combobox
+                         placeholder="Select Here"
+                         get-data="vm.getFlowers()"
+                         label-name="name"
+                         searchable="true"
+                         ng-model="comboboxValue"
+                         on-change="vm.onComboboxChange(item)">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <p class="input-group bento-datepicker">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" 
+                                   ng-model="vm.dt" is-open="vm.opened" min-date="'2001-01-01'" datepicker-options="vm.dateOptions" 
+                                   show-button-bar="false" ng-required="false" ng-click="vm.open($event)">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.open($event)">
+                                    <i class="bento-icon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </uib-tab>
+    </uib-tabset>
+    <!--<div class="row" style="height:600px; overflow:scroll">
+        <div class="col-md-6">
+            <wj-flex-grid items-source="data" control="flex">
+            </wj-flex-grid>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+
+    </div>-->
+</div>

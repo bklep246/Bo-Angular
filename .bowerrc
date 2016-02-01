@@ -1,6 +1,7 @@
 {
     "directory": "bower_components",
+    "registry" : "http://bower.int.thomsonreuters.com",
     "scripts": {
-        
+
     }
 }

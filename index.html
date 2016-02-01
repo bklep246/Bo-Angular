@@ -7,35 +7,108 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="bower_components/datatables-tabletools/css/dataTables.tableTools.css" />
+    <link rel="stylesheet" href="bower_components/bento-modern/bootstrap/platform-theme.min.css" />
+    <link rel="stylesheet" href="bower_components/bento-modern/datatables/platform-theme.min.css" />
+    <link rel="stylesheet" href="bower_components/bento-modern/flexgrid/platform-theme.min.css" />
+    <link rel="stylesheet" href="bower_components/bento-modern/components/platform-theme.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
+
+    <link href="scripts/bento/flexgrid/wijmo.min.css" rel="stylesheet" />
+    <link href="scripts/bento/modern/flexgrid/platform-theme.min.css" rel="stylesheet" />
 
     <!-- build:css styles/app.css -->
     <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/app.css">
+    <link rel="stylesheet" href="/.tmp/accountWidgets.css">
+    <link rel="stylesheet" href="/.tmp/marketWidgets.css">
+    <link rel="stylesheet" href="/.tmp/tradingWidgets.css">
     <!-- endinject -->
     <!-- endbuild -->
-
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/javascript-detect-element-resize/detect-element-resize.js"></script>
+    <script src="bower_components/angular-gridster/src/angular-gridster.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/datatables-tabletools/js/dataTables.tableTools.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-agility/dist/angular-agility.min.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/topojson/topojson.js"></script>
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/datamaps/dist/datamaps.all.js"></script>
+    <script src="bower_components/d3-geo-projection/index.js"></script>
+    <script src="bower_components/bento-modern/components/bento-modern.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="scripts/bento/flexgrid/wijmo.min.js"></script>
+    <script src="scripts/bento/flexgrid/wijmo.grid.min.js"></script>
+    <script src="scripts/bento/flexgrid/wijmo.grid.grouppanel.min.js"></script>
+    <script src="scripts/bento/flexgrid/wijmo.input.min.js"></script>
+    <script src="scripts/bento/flexgrid/wijmo.angular.min.js"></script>
+
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
+    <script src="/app/app.module.js"></script>
+    <script src="/ext-modules/accountWidgets/accountWidgets.module.js"></script>
+    <script src="/ext-modules/marketWidgets/marketWidgets.module.js"></script>
+    <script src="/ext-modules/tradingWidgets/tradingWidgets.module.js"></script>
+    <script src="/services/services.module.js"></script>
+    <script src="/app/app.config.js"></script>
+    <script src="/app/app.route.js"></script>
+    <script src="/app/bentoDashboard/bentoDashboard.controller.js"></script>
+    <script src="/app/bentoDashboard/bentoDashboard.directive.js"></script>
+    <script src="/app/dashboard/dashboard.directive.js"></script>
+    <script src="/app/dashboard/widgetbody.directive.js"></script>
+    <script src="/app/directives/accountDashboard.directive.js"></script>
+    <script src="/app/directives/marketDashboard.directive.js"></script>
+    <script src="/app/directives/tradingDashboard.directive.js"></script>
+    <script src="/app/framework/framework.controller.js"></script>
+    <script src="/app/framework/framework.directive.js"></script>
+    <script src="/app/menu/menu.controller.js"></script>
+    <script src="/app/menu/menu.directive.js"></script>
+    <script src="/app/menu/menuitem.directive.js"></script>
+    <script src="/ext-modules/accountWidgets/activity/activity.directive.js"></script>
+    <script src="/ext-modules/accountWidgets/orderStatus/orderStatus.directive.js"></script>
+    <script src="/ext-modules/marketWidgets/news/news.directive.js"></script>
+    <script src="/ext-modules/tradingWidgets/equity/equity.directive.js"></script>
+    <script src="/ext-modules/marketWidgets/watchlist/watchlist.directive.js"></script>
+    <script src="/ext-modules/tradingWidgets/mutualFund/mutualFund.directive.js"></script>
+    <script src="/ext-modules/tradingWidgets/options/options.directive.js"></script>
+    <script src="/services/dataService.js"></script>
     <!-- endinject -->
-
     <!-- inject:templates:js -->
     <!-- endinject -->
     <!-- endbuild -->
+
+
+
 </head>
 <body class="container-fluid">
     <framework title="Bo-Angular"
-                  subtitle="POC Project"
-                  icon-file="images/thomsonLogo.jpg">
+               subtitle="POC Project"
+               icon-file="images/thomsonLogo.jpg">
         <menu>
             <menu-item label="Account Dash" icon="fa-dashboard" route="accountpages"></menu-item>
             <menu-item label="Trading Dash" icon="fa-magic" route="tradingpages"></menu-item>
             <menu-item label="Market Data Dash" icon="fa-location-arrow" route="marketdata"></menu-item>
+            <menu-item label="Bento Components" icon="fa-location-arrow" route="bentocomponents"></menu-item>
         </menu>
 
     </framework>

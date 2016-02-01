@@ -1,4 +1,9 @@
-﻿.activity-widget {
+﻿.activity-container{
+    overflow:scroll;
+    height:100%;
+}
+
+.activity-widget {
     height: 100%;
     width: 100%;
     font-size: 16px;
