@@ -1,0 +1,115 @@
+﻿<div class="container-fluid">
+    Kendo components
+
+    <div kendo-tab-strip k-content-urls="[ null, null]">
+        <!-- tab list -->
+        <ul>
+            <li class="k-state-active">Data Grid</li>
+            <li>Panel Bar</li>
+            <li>Input Controls</li>
+        </ul>
+
+        <div style="padding: 1em">
+            <div id="grid"></div>
+        </div>
+
+        <div style="padding: 1em">
+            <ul kendo-panel-bar>
+                <li>
+                    Metallica - Master of Puppets 1986
+                    <ul>
+                        <li>Battery</li>
+                        <li>Master of Puppets</li>
+                        <li>The Thing That Should Not Be</li>
+                        <li>Welcome Home (Sanitarium)</li>
+                        <li>Disposable Heroes</li>
+                        <li>Leper Messiah</li>
+                        <li>Orion (Instrumental)</li>
+                        <li>Damage, Inc.</li>
+                    </ul>
+                </li>
+                <li>
+                    Iron Maiden - Brave New World 2000
+                    <ul>
+                        <li>The Wicker Man</li>
+                        <li>Ghost Of The Navigator</li>
+                        <li>Brave New World</li>
+                        <li>Blood Brothers</li>
+                        <li>The Mercenary</li>
+                        <li>Dream Of Mirrors</li>
+                        <li>The Fallen Angel</li>
+                        <li>The Nomad</li>
+                        <li>Out Of The Silent Planet</li>
+                        <li>The Thin Line Between Love And Hate</li>
+                    </ul>
+                </li>
+                <li>
+                    Iron Maiden 2 - Brave New World 2000
+                    <ul>
+                        <li>The Wicker Man</li>
+                        <li>Ghost Of The Navigator</li>
+                        <li>Brave New World</li>
+                        <li>Blood Brothers</li>
+                        <li>The Mercenary</li>
+                        <li>Dream Of Mirrors</li>
+                        <li>The Fallen Angel</li>
+                        <li>The Nomad</li>
+                        <li>Out Of The Silent Planet</li>
+                        <li>The Thin Line Between Love And Hate</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div style="padding: 1em">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Select sport:</h4>
+                    <select kendo-combo-box="combobox" style="width: 100%" ng-model="vm.selectedSport" k-data-source="vm.sports" k-data-value-field="'name'" k-data-text-field="'name'"></select>
+                    Current Value = {{vm.selectedSport}}
+                </div>
+                <div class="col-md-3">
+
+                    <h4>Select date:</h4>
+                    <input kendo-date-picker
+                           ng-model="dateString"
+                           k-ng-model="dateObject"
+                           style="width: 100%;" />
+<pre>
+dateString: {{ dateString }}
+dateObject: {{ dateObject | date:"EEEE, MMMM d, yyyy" }}
+typeof dateObject: {{ getType(dateObject) }}
+dateObject instanceof Date: {{ isDate(dateObject) }}
+</pre>
+
+
+                </div>
+                <div class="col-md-3">
+                    <h4>Select time:</h4>
+                    <input kendo-time-picker
+                           ng-model="str"
+                           k-ng-model="obj"
+                           style="width: 100%;" />
+<pre>
+  str: {{ str }}
+  obj: {{ obj }}
+  typeof obj: {{ getType(obj) }}
+  obj instanceof Date: {{ isDate(obj) }}
+</pre>
+                </div>
+                <div class="col-md-3">
+                    <kendo-button class="k-primary" ng-click="vm.onClick1()">Primary Button</kendo-button>
+                    <kendo-button on-click="vm.onClick2()">Button</kendo-button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Masked Time Input:</label>
+                    <input kendo-masked-text-box ng-model="vm.acceptedTime"
+                           k-mask="'00:00:00'" />
+                    <div class="value">Value: {{vm.acceptedTime}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,12 @@ function routeConfig($routeProvider) {
             config: {
                 template: '<market-dashboard></market-dashboard>'
             }
+        },
+        {
+            url: '/kendocomponents',
+            config: {
+                template: '<kendo-dashboard></kendo-dashboard>'
+            }
         }
     ];
 
