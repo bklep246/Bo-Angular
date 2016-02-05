@@ -20,12 +20,56 @@
         </uib-tab>
         <uib-tab>
             <uib-tab-heading>
+                Flex Grid
+                <span class="badge">{{cntValA}}</span>
+            </uib-tab-heading>
+            
+                <wj-flex-grid control="ctx.flexGrid" items-source="ctx.data" class="bento-flex-grid demo-pin-width demo-pin-height" allow-resizing="Both" defer-resizing="true" loaded-rows="onLoadedRows()" selection-mode="Row" selection-changed="onSelectionChanged(s,e)" item-formatter="itemFormatter">
+                    <wj-flex-grid-cell-template cell-type="RowHeader">
+                        {{$row.index+1}}
+                    </wj-flex-grid-cell-template>
+                    <wj-flex-grid-column header="" binding="selected" min-width="40" width="40">
+                        <wj-flex-grid-cell-template cell-type="GroupHeader">
+                            <i class="collapse-icon" ng-class="{'bento-icon-expand':$row.isCollapsed,'bento-icon-collapse':!$row.isCollapsed}" ng-click="$row.isCollapsed = !$row.isCollapsed"></i> {{$item.name}} ({{$item.items.length}} items)
+                        </wj-flex-grid-cell-template>
+                    </wj-flex-grid-column>
+                    <wj-flex-grid-column header="actions" binding="" min-width="160" width="160" align="left" is-read-only="true">
+                        <wj-flex-grid-cell-template cell-type="Cell">
+                            <span class="bento-icon-edit grid-action-icon" ng-click="actions.editRow($item)" data-tooltip-placement="top" data-tooltip-trigger="mouseenter" data-uib-tooltip="Edit" data-tooltip-append-to-body="true">
+                            </span>
+                            <span class="bento-icon-attachment grid-action-icon" ng-click="actions.attachRow($item)" data-tooltip-placement="top" data-tooltip-trigger="mouseenter" data-uib-tooltip="Attach" data-tooltip-append-to-body="true">
+                            </span>
+                            <span class="dropdown grid-dropdown" uib-dropdown="" bento-dropdown-append-to-parent="" bento-append-to-parent="body">
+                                <button class="btn btn-default btn-xs dropdown-toggle" uib-dropdown-toggle="">
+                                    MORE
+                                    <i class="bento-icon-arrow-down2"></i>
+                                </button>
+                                <ul class="dropdown-menu grid-dropdown">
+                                    <li>Dataset Parameters</li>
+                                    <li>Dataset State Inclusions</li>
+                                    <li>Journal Entry Profiles</li>
+                                    <li>Manage Deferred Rollforwards</li>
+                                </ul>
+                            </span>
+                        </wj-flex-grid-cell-template>
+                    </wj-flex-grid-column>
+                    <wj-flex-grid-column ng-repeat="key in ctx.columnBindings" ng-if="key!=='selected'" min-width="120" width="*" header="{{key}}" binding="{{key}}" visible="{{ctx.columnVis[key]}}">
+
+                    </wj-flex-grid-column>
+
+                </wj-flex-grid>
+                <div bento-pagination="" page="ctx.page" direction-links="true" items-array="ctx.itemPerPageOptions" boundary-links="true" total-items="ctx.totalItems" items-per-page="ctx.pageSize" lang="ctx.language" class="">
+                </div>
+            
+        </uib-tab>
+        <uib-tab>
+            <uib-tab-heading>
                 Input Controls
                 <span class="badge">{{cntValB}}</span>
             </uib-tab-heading>
             <label class="strong-block">Bento Controls</label>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div bento-combobox
                          placeholder="Select Here"
                          get-data="vm.getFlowers()"
@@ -35,11 +79,11 @@
                          on-change="vm.onComboboxChange(item)">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div>
                         <p class="input-group bento-datepicker">
-                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" 
-                                   ng-model="vm.dt" is-open="vm.opened" min-date="'2001-01-01'" datepicker-options="vm.dateOptions" 
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                   ng-model="vm.dt" is-open="vm.opened" min-date="'2001-01-01'" datepicker-options="vm.dateOptions"
                                    show-button-bar="false" ng-required="false" ng-click="vm.open($event)">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="vm.open($event)">
@@ -49,8 +93,38 @@
                         </p>
                     </div>
                 </div>
+                <div class="col-md-3" bento-busy-loader="vm.isLoader1Busy" busy-loader-size="normal" id="bento-busyloader-demo-container">
+                    <strong>Manually show loader</strong>
+                    <pre>Lorem ipsum dolor sit amet.</pre>
+                    <button class="btn btn-sm btn-default" data-ng-click="vm.showLoader1()">Show Loader</button>
+                    <button class="btn btn-default btn-sm"
+                            ng-click="vm.openModal('sm',null,'myModalContent.html')">
+                        Open small modal
+                    </button><br />
+                    {{vm.message}}
+                    <!--<button class="btn btn-default" data-ng-click="vm.showLoader2()">Show Main Busy Loader</button>-->
+                </div>
             </div>
-            
+
+        </uib-tab>
+        <uib-tab>
+            <uib-tab-heading>
+                Accordion
+                <span class="badge">{{cntValB}}</span>
+            </uib-tab-heading>
+            <uib-accordion class="bento-accordion" close-others="oneAtATime">
+                <uib-accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a enim dapibus, sollicitudin felis sed, ultricies ex. Proin molestie fermentum urna vel molestie. Aliquam porttitor vulputate lobortis. Praesent ac ex ipsum. Ut pellentesque, turpis sed molestie dictum, justo orci lacinia est, nec consectetur elit nunc ac metus. Aliquam porttitor vulputate lobortis. Praesent ac ex ipsum. Ut pellentesque, turpis sed molestie dictum.
+                </uib-accordion-group>
+                <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                    {{group.content}}
+                </uib-accordion-group>
+                <uib-accordion-group heading="Dynamic Body Content" is-open="status.open">
+                    <p>The body of the accordion group grows to fit the contents</p>
+                    <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+                    <div ng-repeat="item in items">{{item}}</div>
+                </uib-accordion-group>
+            </uib-accordion>
         </uib-tab>
     </uib-tabset>
     <!--<div class="row" style="height:600px; overflow:scroll">
@@ -64,3 +138,31 @@
 
     </div>-->
 </div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <button type="button" class="close" aria-hidden="true" ng-click="close()">
+        <i class="bento-icon-close-x"></i>
+    </button>
+    <div class="modal-header">
+        Modal Header Lorem Ipsum
+    </div>
+    <div class="modal-body">
+        <p class="strong">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent vestibulum mattis tincidunt. Mauris a viverra mi,
+            vel interdum justo. Mauris malesuada nec sapien vitae pellentesque.
+        </p>
+        <p>
+            Donec id odio at nisi pharetra consequat. Quisque euismod ultrices
+            ullamcorper. In hac habitasse platea dictumst. Nunc dapibus leo quis
+            risus blandit ultrices. Maecenas ultricies rutrum ultrices. Sed
+            adipiscing arcu tincidunt sapien faucibus, nec elementum quam
+            molestie. Duis sollicitudin iaculis dignissim. Aenean non dapibus
+            lorem, rhoncus laoreet ipsum.
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="save()">Save</button>
+        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

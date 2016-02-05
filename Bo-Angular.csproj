@@ -360,6 +360,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="services\flexGridSetUpService.js" />
     <Content Include="services\services.module.js" />
     <Content Include="tests\controllers\framework.spec.js" />
     <Content Include="Web.config" />
