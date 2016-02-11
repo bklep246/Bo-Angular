@@ -13,6 +13,7 @@
         report: report,
         services: services,
         alljs: [app + '**/*.js', 'ext-modules/**/*.js', 'services/**/*.js'],
+        allts: [app + '**/*.ts', 'ext-modules/**/*.ts', 'services/**/*.ts'],
         build: './dist/',
         fonts: './bower_components/font-awesome/fonts/**/*.*',
         htmltemplates: app + '**/*.html',

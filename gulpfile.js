@@ -118,15 +118,15 @@ gulp.task('clean', ['clean-styles', 'clean-fonts', 'clean-images', 'clean-code']
 //////////////////////// END CLEAN TASKS /////////////////////////////////
 
 gulp.task('lint', function () {
-    log('analyzing source with eslint');
-    return gulp.src(config.alljs)
+    log('analyzing source with tslint');
+    return gulp.src(config.allts)
         .pipe($.if(args.verbose, $.print()))
         // eslint() attaches the lint output to the "eslint" property 
         // of the file object so it can be used by other modules. 
-        .pipe($.eslint())
+        .pipe($.tslint())
         // eslint.format() outputs the lint results to the console. 
         // Alternatively use eslint.formatEach() (see Docs). 
-        .pipe($.eslint.format())
+        //.pipe($.tslint.format())
         // To have the process exit with an error code (1) on 
         // lint error, return the stream and pipe to failAfterError last. 
     //.pipe($.eslint.failAfterError())
@@ -186,9 +186,9 @@ gulp.task('serve', ['lint', 'inject'], function () {
     //watch html changes
     gulp.watch(config.allhtml, reload);
 
-    //watch js changes
-    gulp.watch(config.alljs, function () {
-        lintReload(config.alljs);
+    //watch ts changes
+    gulp.watch(config.allts, function () {
+        lintReload(config.allts);
     });
 });
 
@@ -228,10 +228,10 @@ gulp.task('default', ['clean'], function () {
 /////////////////// HELPER FUNCTIONS /////////////////////////
 
 function lintReload(path) {
-    log('analyzing source with eslint');
+    log('analyzing source with tslint');
     return gulp.src(path)
-        .pipe($.eslint())
-        .pipe($.eslint.format())
+        .pipe($.tslint())
+        //.pipe($.tslint.format())
         //.pipe($.eslint.failAfterError())
         .pipe(browserSync.reload({ stream: true }));
 }

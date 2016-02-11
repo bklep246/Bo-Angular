@@ -1,10 +1,7 @@
-﻿'use strict';
-
+'use strict';
 angular.module('app').config(routeConfig);
-
 routeConfig.$inject = ['$routeProvider'];
 function routeConfig($routeProvider) {
-
     var routes = [
         {
             url: '/accountpages',
@@ -25,11 +22,9 @@ function routeConfig($routeProvider) {
             }
         }
     ];
-
     routes.forEach(function (route) {
         $routeProvider.when(route.url, route.config);
     });
-
     $routeProvider.otherwise({ redirectTo: '/accountpages' });
-
 }
+//# sourceMappingURL=app.route.js.map
