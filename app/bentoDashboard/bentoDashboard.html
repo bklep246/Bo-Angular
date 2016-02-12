@@ -1,12 +1,12 @@
-﻿<div class="bento-container" style="background-color:white; padding:10px;">
-    <h2>Bento Dashboard</h2>
+﻿<div style="background-color:white; padding:10px;">
+    <h2>Wijmo Dashboard</h2>
     <!-- this is the grid -->
 
     <div class="row">
         <div class="col-md-3">
             <div>
                 <label>Non-Editable</label>
-                <wj-combo-box items-source="vm.flowers" is-editable="false">
+                <wj-combo-box items-source="vm.flowers" is-editable="false" display-member-path="name" ng-model="vm.flowerName">
                 </wj-combo-box>
             </div>
             <div>
@@ -38,54 +38,47 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12">
+            <wj-flex-grid items-source="vm.data" control="flex">
+                <wj-flex-grid-column header="Type 1" binding="flower">
+                    <wj-combo-box items-source="vm.flowers" display-member-path="name" is-editable="true">
+                    </wj-combo-box>
+                </wj-flex-grid-column>
+                <wj-flex-grid-column header="Type 2" binding="flower">
+                    <wj-combo-box items-source="vm.flowers" display-member-path="name" is-editable="true">
+                    </wj-combo-box>
+                </wj-flex-grid-column>
+                <wj-flex-grid-column header="Type 3" binding="flower">
+                    <wj-combo-box items-source="vm.flowers" display-member-path="name" is-editable="true">
+                    </wj-combo-box>
+                </wj-flex-grid-column>
+                <wj-flex-grid-column header="Type 4" binding="flower">
+                    <wj-combo-box items-source="vm.flowers" display-member-path="name" is-editable="true">
+                    </wj-combo-box>
+                </wj-flex-grid-column>
+                <wj-flex-grid-column header="Type 5" binding="flower">
+                    <wj-combo-box items-source="vm.flowers" display-member-path="name" is-editable="true">
+                    </wj-combo-box>
+                </wj-flex-grid-column>
+                <wj-flex-grid-column header="ID" binding="id"></wj-flex-grid-column>
+                <wj-flex-grid-column header="Order" binding="order"></wj-flex-grid-column>
+                <wj-flex-grid-column header="Date" binding="date"></wj-flex-grid-column>
+                <wj-flex-grid-column header="Amount" binding="amount"
+                     ng-style="{true:{color:'green'}, false:{color:'blue'}}[$item.amount > 2000]">
+                </wj-flex-grid-column>
+                <wj-flex-grid-column header="Active" binding="active"></wj-flex-grid-column>
+            </wj-flex-grid>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <wj-flex-grid items-source="vm.data" control="flex">
             </wj-flex-grid>
         </div>
         <div class="col-md-6">
-            <wj-flex-grid control="ctx.flexGrid" items-source="ctx.data" class="bento-flex-grid demo-pin-width demo-pin-height" allow-resizing="Both"
-                          defer-resizing="true" loaded-rows="onLoadedRows()" selection-mode="Row" selection-changed="onSelectionChanged(s,e)"
-                          item-formatter="itemFormatter">
-                <wj-flex-grid-cell-template cell-type="RowHeader">
-                    {{$row.index+1}}
-                </wj-flex-grid-cell-template>
-                <wj-flex-grid-column header="" binding="selected" min-width="40" width="40">
-                    <wj-flex-grid-cell-template cell-type="GroupHeader">
-                        <i class="collapse-icon" ng-class="{'bento-icon-expand':$row.isCollapsed,'bento-icon-collapse':!$row.isCollapsed}" ng-click="$row.isCollapsed = !$row.isCollapsed"></i>                        {{$item.name}} ({{$item.items.length}} items)
-                    </wj-flex-grid-cell-template>
-                </wj-flex-grid-column>
-                <wj-flex-grid-column header="actions" binding="" min-width="160" width="160" align="left" is-read-only="true">
-                    <wj-flex-grid-cell-template cell-type="Cell">
-                        <span class="bento-icon-edit grid-action-icon" ng-click="actions.editRow($item)" data-tooltip-placement="top" data-tooltip-trigger="mouseenter"
-                              data-uib-tooltip="Edit" data-tooltip-append-to-body="true">
-                        </span>
-                        <span class="bento-icon-attachment grid-action-icon" ng-click="actions.attachRow($item)" data-tooltip-placement="top" data-tooltip-trigger="mouseenter"
-                              data-uib-tooltip="Attach" data-tooltip-append-to-body="true">
-                        </span>
-                        <span class="dropdown grid-dropdown" uib-dropdown="" bento-dropdown-append-to-parent="" bento-append-to-parent="body">
-                            <button class="btn btn-default btn-xs dropdown-toggle" uib-dropdown-toggle="">
-                                MORE
-                                <i class="bento-icon-arrow-down2"></i>
-                            </button>
-                            <ul class="dropdown-menu grid-dropdown">
-                                <li>Dataset Parameters</li>
-                                <li>Dataset State Inclusions</li>
-                                <li>Journal Entry Profiles</li>
-                                <li>Manage Deferred Rollforwards</li>
-                            </ul>
-                        </span>
-                    </wj-flex-grid-cell-template>
-                </wj-flex-grid-column>
-                <wj-flex-grid-column ng-repeat="key in ctx.columnBindings" ng-if="key!=='selected'" min-width="120" width="*" header="{{key}}"
-                                     binding="{{key}}" visible="{{ctx.columnVis[key]}}">
 
-                </wj-flex-grid-column>
-
-            </wj-flex-grid>
-            <div bento-pagination="" page="ctx.page" direction-links="true" items-array="ctx.itemPerPageOptions" boundary-links="true"
-                 total-items="ctx.totalItems" items-per-page="ctx.pageSize" lang="ctx.language" class="">
-            </div>
         </div>
     </div>
+
 
 </div>
