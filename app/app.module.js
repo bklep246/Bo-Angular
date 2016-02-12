@@ -5,9 +5,7 @@ angular.module('app', [
     'gridster', 
     'ui.bootstrap', 
     'ngAnimate', 
-    'ngStorage',
-    'bento.modern',
-    
+    'ngStorage',    
     'wj',
     'services', 
     'accountWidgets', 

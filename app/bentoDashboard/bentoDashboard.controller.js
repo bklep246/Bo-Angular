@@ -1,47 +1,23 @@
 ﻿'use strict';
 
-var ModalInstanceCtrl = function ($scope, $uibModalInstance, items) {
-    $scope.save = function () {
-        $uibModalInstance.close('save');
-    };
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-
-    $scope.close = function () {
-        $uibModalInstance.dismiss('close');
-    }
-};
-
 angular.module('app').controller('BentoController', BentoController);
 
-BentoController.$inject = ['$scope', '$log', '$timeout', 'flexGridSetUpService', '$locale', '$uibModal', 'dataService'];
-function BentoController($scope, $log, $timeout, flexGridSetUpService, $locale, $uibModal, dataService) {
+BentoController.$inject = ['$scope', '$log', '$timeout', 'flexGridSetUpService', '$locale', 'dataService'];
+function BentoController($scope, $log, $timeout, flexGridSetUpService, $locale, dataService) {
     var vm = this;
 
     //var busyLoader2 = $bentoBusyLoader.getNewLoader($element);
     vm.isLoader1Busy = false;
     vm.message = 'Status';
 
-    vm.openModal = function (modSize, modClass, modTmpl) {
-        var modalInstance = $uibModal.open({
-            templateUrl: modTmpl,
-            controller: ModalInstanceCtrl,
-            size: modSize,
-            windowClass: modClass,
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            },
-        });
+    vm.cboTextChanged = function (sender, args) {
+        //debugger;
+    };
 
-        modalInstance.result.then(function (result) {
-            vm.message = 'Modal returned a value : ' + result;
-        }, function (reason) {
-            vm.message = 'Modal dismissed at: ' + new Date() + ' by clicking ' + reason;
-        });
+    vm.testButtonClicked = function () {
+        //var cbo = angular.element('#cboTest');
+        var val = $scope.cboTest;
+        debugger;
     };
 
     // generate some random data
@@ -79,58 +55,7 @@ function BentoController($scope, $log, $timeout, flexGridSetUpService, $locale, 
     // add data array to scope
     vm.data = data;
 
-    //DatePicker section
-    vm.today = function () {
-        vm.dt = new Date(); //  to use with timezones
-    };
-
-    vm.today();
-
-    vm.clear = function () {
-        vm.dt = null;
-    };
-
-    vm.open = function ($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-
-        vm.opened = !vm.opened;
-    };
-
-    vm.dateOptions = {
-        'year-format': "'yy'",
-        'day-format': "'d'",
-        'starting-day': 2,
-        'show-weeks': false,
-        'show-button-bar': false
-    };
-
-    vm.formats = ['MM/dd/yyyy', 'yyyy/MM/dd', 'shortDate'];
-    vm.format = vm.formats[0];
-
-    // Method 1
-    // Manually show busyLoader1 with 3 seconds delay to hide
-    vm.showLoader1 = function () {
-
-        vm.isLoader1Busy = true;
-        //Take busy loader away
-        $timeout(function () {
-            vm.isLoader1Busy = false;    
-        }, 3000);
-        //setTimeout(function () {
-        //    vm.isLoader1Busy = false;
-        //    // Apply `isLoader1Busy=false` to $watch stack
-        //    $scope.$apply();
-        //}, 3000);
-    };
-
-    // Method 2
-    // Manually show busyLoader1 with 2 seconds delay to hide
-    //vm.showLoader2 = function () {
-    //    busyLoader2.show();
-    //    busyLoader2.hide(2000);
-    //};
-
+   
 
     $scope.ctx = {
         flexGrid: null,
