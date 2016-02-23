@@ -71,38 +71,21 @@
     <Content Include=".gitignore" />
     <Content Include=".bowerrc" />
     <None Include="app\app.scss" />
-    <Content Include="app\app.config.js" />
-    <Content Include="app\app.module.js" />
-    <Content Include="app\app.route.js" />
-    <Content Include="app\dashboard\dashboard.directive.js" />
     <Content Include="app\dashboard\dashboard.html" />
-    <Content Include="app\dashboard\widgetBody.directive.js" />
     <Content Include="app\dashboard\widgetBody.html" />
-    <Content Include="app\directives\accountDashboard.directive.js" />
-    <Content Include="app\directives\marketDashboard.directive.js" />
-    <Content Include="app\directives\tradingDashboard.directive.js" />
-    <Content Include="app\framework\framework.controller.js" />
     <Content Include="app\framework\framework.controller.spec.js" />
-    <Content Include="app\framework\framework.directive.js" />
     <Content Include="app\framework\framework.html" />
-    <Content Include="app\menu\menu.controller.js" />
     <Content Include="app\menu\menu.controller.spec.js" />
-    <Content Include="app\menu\menu.directive.js" />
     <Content Include="app\menu\menuItem.directive.js" />
     <Content Include="app\menu\menuItem.html" />
     <Content Include="app\menu\menu.html" />
     <Content Include="services\dataService.js" />
-    <Content Include="ext-modules\accountWidgets\accountWidgets.module.js" />
     <None Include="ext-modules\accountWidgets\activity\activity.scss" />
-    <Content Include="ext-modules\accountWidgets\activity\activity.directive.js" />
     <Content Include="ext-modules\accountWidgets\activity\activity.html" />
     <None Include="ext-modules\accountWidgets\orderStatus\orderStatus.scss" />
-    <Content Include="ext-modules\accountWidgets\orderStatus\orderStatus.directive.js" />
     <Content Include="ext-modules\accountWidgets\orderStatus\orderStatus.html" />
     <Content Include="ext-modules\marketWidgets\marketWidgets.module.js" />
-    <Content Include="ext-modules\marketWidgets\watchlist\watchlist.directive.js" />
     <Content Include="ext-modules\marketWidgets\watchlist\watchlist.html" />
-    <Content Include="ext-modules\marketWidgets\news\news.directive.js" />
     <Content Include="ext-modules\marketWidgets\news\news.html" />
     <Content Include="ext-modules\tradingWidgets\tradingWidgets.module.js" />
     <Content Include="ext-modules\marketWidgets\news\news.scss" />
@@ -155,7 +138,25 @@
     <Folder Include="tests\server-integration\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\app.config.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.route.ts" />
+    <TypeScriptCompile Include="app\dashboard\dashboard.directive.ts" />
+    <TypeScriptCompile Include="app\dashboard\widgetbody.directive.ts" />
+    <TypeScriptCompile Include="app\directives\accountDashboard.directive.ts" />
+    <TypeScriptCompile Include="app\directives\marketDashboard.directive.ts" />
+    <TypeScriptCompile Include="app\directives\tradingDashboard.directive.ts" />
+    <TypeScriptCompile Include="app\framework\framework.controller.ts" />
+    <TypeScriptCompile Include="app\framework\framework.directive.ts" />
+    <TypeScriptCompile Include="app\menu\menu.controller.ts" />
+    <TypeScriptCompile Include="app\menu\menu.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\accountWidgets\accountWidgets.module.ts" />
+    <TypeScriptCompile Include="ext-modules\accountWidgets\activity\activity.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\accountWidgets\orderStatus\orderStatus.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\marketWidgets\news\news.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\marketWidgets\watchlist\watchlist.directive.ts" />
     <TypeScriptCompile Include="services\testService.ts" />
+    <TypeScriptCompile Include="typings\main.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
