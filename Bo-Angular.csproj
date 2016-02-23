@@ -79,26 +79,20 @@
     <Content Include="app\menu\menuItem.directive.js" />
     <Content Include="app\menu\menuItem.html" />
     <Content Include="app\menu\menu.html" />
-    <Content Include="services\dataService.js" />
     <None Include="ext-modules\accountWidgets\activity\activity.scss" />
     <Content Include="ext-modules\accountWidgets\activity\activity.html" />
     <None Include="ext-modules\accountWidgets\orderStatus\orderStatus.scss" />
     <Content Include="ext-modules\accountWidgets\orderStatus\orderStatus.html" />
-    <Content Include="ext-modules\marketWidgets\marketWidgets.module.js" />
     <Content Include="ext-modules\marketWidgets\watchlist\watchlist.html" />
     <Content Include="ext-modules\marketWidgets\news\news.html" />
-    <Content Include="ext-modules\tradingWidgets\tradingWidgets.module.js" />
     <Content Include="ext-modules\marketWidgets\news\news.scss" />
     <Content Include="ext-modules\marketWidgets\marketWidgets.scss" />
     <Content Include="ext-modules\marketWidgets\watchlist\watchlist.scss" />
     <None Include="ext-modules\tradingWidgets\equity\equity.scss" />
-    <Content Include="ext-modules\tradingWidgets\equity\equity.directive.js" />
     <Content Include="ext-modules\tradingWidgets\equity\equity.html" />
     <None Include="ext-modules\tradingWidgets\mutualFund\mutualFund.scss" />
-    <Content Include="ext-modules\tradingWidgets\mutualFund\mutualFund.directive.js" />
     <Content Include="ext-modules\tradingWidgets\mutualFund\mutualFund.html" />
     <None Include="ext-modules\tradingWidgets\options\options.scss" />
-    <Content Include="ext-modules\tradingWidgets\options\options.directive.js" />
     <Content Include="ext-modules\tradingWidgets\options\options.html" />
     <Content Include="gulp.config.js" />
     <Content Include="gulpfile.js" />
@@ -127,7 +121,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="services\services.module.js" />
     <Content Include="tests\controllers\framework.spec.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -153,8 +146,15 @@
     <TypeScriptCompile Include="ext-modules\accountWidgets\accountWidgets.module.ts" />
     <TypeScriptCompile Include="ext-modules\accountWidgets\activity\activity.directive.ts" />
     <TypeScriptCompile Include="ext-modules\accountWidgets\orderStatus\orderStatus.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\marketWidgets\marketWidgets.module.ts" />
     <TypeScriptCompile Include="ext-modules\marketWidgets\news\news.directive.ts" />
     <TypeScriptCompile Include="ext-modules\marketWidgets\watchlist\watchlist.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\tradingWidgets\equity\equity.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\tradingWidgets\mutualFund\mutualFund.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\tradingWidgets\options\options.directive.ts" />
+    <TypeScriptCompile Include="ext-modules\tradingWidgets\tradingWidgets.module.ts" />
+    <TypeScriptCompile Include="services\dataService.ts" />
+    <TypeScriptCompile Include="services\services.module.ts" />
     <TypeScriptCompile Include="services\testService.ts" />
     <TypeScriptCompile Include="typings\main.d.ts" />
   </ItemGroup>
